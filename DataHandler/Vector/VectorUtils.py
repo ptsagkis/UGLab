@@ -1,7 +1,7 @@
 import ogr
 import rtree
-import DataHandler.Vector.Reproject as reprj
 import Services.Progress as progress_bar
+from DataHandler.Vector.Reproject import Reproject
 
 
 class VectorUtils:
@@ -32,7 +32,7 @@ class VectorUtils:
         in_layer = in_shapes.GetLayer()
         in_prj = in_layer.GetSpatialRef()
         if in_prj != mbr_prj:
-            mbr_geom = reprj.Reproject().reproject_geometry(VectorUtils.extent_to_geom(mbr_extent), mbr_prj, in_prj)
+            mbr_geom = Reproject.reproject_geometry(VectorUtils.extent_to_geom(mbr_extent), mbr_prj, in_prj)
         filtered_feats = VectorUtils.filter_feats_with_geom(shape_in, mbr_geom)
         # create the output layer
         ds = driver.CreateDataSource(shape_out)
@@ -44,16 +44,17 @@ class VectorUtils:
         feature_out = ogr.Feature(output_layer.GetLayerDefn())
         counter = 0
         max_f = len(filtered_feats)
+        pbar = progress_bar.Progress()
         for feature in filtered_feats:
             counter = counter + 1
-            progress_bar.Progress().progress(counter, max_f, 'Filter Vector DataHandler: ', 'Progress:')
+            pbar.progress(counter, max_f, 'Filter Vector DataHandler: ', 'Progress:')
             for i in range(0, in_layer.GetLayerDefn().GetFieldCount()):
                 feature_out.SetField(in_layer.GetLayerDefn().GetFieldDefn(i).GetNameRef(), feature.GetField(i))
 
             if in_prj == mbr_prj:
                 cur_geom = feature.GetGeometryRef()
             else:
-                cur_geom = reprj.Reproject().reproject_geometry(
+                cur_geom = Reproject.reproject_geometry(
                     feature.GetGeometryRef(),
                     in_layer.GetSpatialRef(),
                     mbr_prj)
@@ -136,7 +137,7 @@ class VectorUtils:
         :param y:
         :param shp_path:
         :param index_enable:
-        :param meters:
+        :param deep:
         :return:
         """
         point = ogr.Geometry(ogr.wkbPoint)

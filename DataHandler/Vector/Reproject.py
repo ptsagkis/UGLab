@@ -2,6 +2,9 @@ from osgeo import osr
 
 
 class Reproject:
+    """
+    Just static methods to support geometry reprojections
+    """
 
     @staticmethod
     def reproject_geometry(geometry, epsgfrom, epsgto):

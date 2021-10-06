@@ -1,7 +1,7 @@
 import requests
 import Services.Progress as progress_bar
-import DataHandler.Vector.Reproject as reprj
-import DataHandler.Vector.VectorUtils as vecdata_utils
+from DataHandler.Vector.Reproject import Reproject
+from DataHandler.Vector.VectorUtils import VectorUtils
 import numpy as np
 from osgeo import ogr, osr
 
@@ -53,7 +53,7 @@ class OsmUtils:
         :param shape_out: POINTS with SUB_CENTER_TYPES
         :return:
         """
-        mbr_prj = vecdata_utils.VectorUtils().get_proj_from_shape(shape_mbr)
+        mbr_prj = VectorUtils.get_proj_from_shape(shape_mbr)
         x_min, x_max, y_min, y_max = self._get_osm_mbr_from_shape(shape_mbr)
         mbr_string = str(x_min) + ',' + str(y_min) + ',' + str(x_max) + ',' + str(y_max)
         print('Downloading OSM places data for mbr_extent ....... :' + mbr_string)
@@ -70,15 +70,16 @@ class OsmUtils:
         output_layer.CreateField(field_type)
         counter = 0
         max_f = len(nodes)
+        prog_bar = progress_bar.Progress()
         for node in nodes:
             counter = counter + 1
-            progress_bar.Progress().progress(counter, max_f, 'Convert OSM (place) data to shapefile: ', 'Progress:')
+            prog_bar.progress(counter, max_f, 'Convert OSM (place) data to shapefile: ', 'Progress:')
             point = ogr.Geometry(ogr.wkbPoint)
             point.AddPoint(node[1], node[2])
             feature_out = ogr.Feature(output_layer.GetLayerDefn())
             feature_out.SetField('type', self.SUB_CENTER_TYPES[node[0]])
             feature_out.SetGeometry(
-                reprj.Reproject().reproject_geometry(point, self._get_overpass_spatial_ref(), mbr_prj))
+                Reproject.reproject_geometry(point, self._get_overpass_spatial_ref(), mbr_prj))
             output_layer.CreateFeature(feature_out)
 
     def download_streets(self, shape_mbr, shape_out):
@@ -89,7 +90,7 @@ class OsmUtils:
         :param shape_out: the output shapefile POLYLINES
         :return: void
         """
-        mbr_prj = vecdata_utils.VectorUtils().get_proj_from_shape(shape_mbr)
+        mbr_prj = VectorUtils.get_proj_from_shape(shape_mbr)
         x_min, x_max, y_min, y_max = self._get_osm_mbr_from_shape(shape_mbr)
         mbr_string = str(x_min) + ',' + str(y_min) + ',' + str(x_max) + ',' + str(y_max)
         print('Downloading OSM street data for mbr_extent ....... :' + mbr_string)
@@ -185,15 +186,16 @@ class OsmUtils:
         np_nodes = np.array(nodes)
         counter = 0
         max_f = len(ways)
+        prog_bar = progress_bar.Progress()
         # build the lines
         for way in ways:
             counter = counter + 1
-            progress_bar.Progress().progress(counter, max_f, 'Convert OSM (streets) data to shapefile: ', 'Progress:')
+            prog_bar.progress(counter, max_f, 'Convert OSM (streets) data to shapefile: ', 'Progress:')
             line = OsmUtils._get_line_from_way(way, np_nodes)
             feature_out = ogr.Feature(output_layer.GetLayerDefn())
             feature_out.SetField('type', OsmUtils.ROAD_TYPES[way['type']])
             feature_out.SetGeometry(
-                reprj.Reproject().reproject_geometry(line, OsmUtils._get_overpass_spatial_ref(), mbr_prj).Simplify(10)
+                Reproject.reproject_geometry(line, OsmUtils._get_overpass_spatial_ref(), mbr_prj).Simplify(10)
             )
             output_layer.CreateFeature(feature_out)
 
@@ -210,9 +212,9 @@ class OsmUtils:
         mbr_layer = mbr_shp.GetLayer()
         mbr_prj = mbr_layer.GetSpatialRef()
         mbr_extent = mbr_layer.GetExtent()
-        mbr_geom = vecdata_utils.VectorUtils().extent_to_geom(mbr_extent)
-        output_spatial_ref = __class__()._get_overpass_spatial_ref()
-        return reprj.Reproject().reproject_geometry(mbr_geom, mbr_prj, output_spatial_ref).GetEnvelope()
+        mbr_geom = VectorUtils.extent_to_geom(mbr_extent)
+        output_spatial_ref = OsmUtils._get_overpass_spatial_ref()
+        return Reproject.reproject_geometry(mbr_geom, mbr_prj, output_spatial_ref).GetEnvelope()
 
     @staticmethod
     def _get_overpass_spatial_ref():
