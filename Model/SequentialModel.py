@@ -68,9 +68,8 @@ class SequentialModel:
         # and do the prediction
         y_predict = np.round(model.predict(X_test), 0)
         y_future_predict = np.round(model.predict(X_predict), 0)
-
+        # do the metrics
         self._create_model_metrics(y_test, y_predict,model, X_test)
-
 
         if os.path.exists(output_csv1):
             os.remove(output_csv1)
@@ -82,7 +81,17 @@ class SequentialModel:
         self._print_data_accuracy_plot(hist_2)
 
     @staticmethod
-    def _normalize_data(train_data_set, test_data_set,predict_data_set,normalize):
+    def _normalize_data(train_data_set, test_data_set, predict_data_set, normalize):
+        """
+        Scales the data to a number from 0 to 1
+        Splits the dataset into x,y coords
+        and into input (X) and output (y)
+        :param train_data_set:
+        :param test_data_set:
+        :param predict_data_set:
+        :param normalize:
+        :return:
+        """
         scaler = StandardScaler()
         # scaler = MinMaxScaler()
         X = train_data_set[:, 2:20]
@@ -127,7 +136,7 @@ class SequentialModel:
     @staticmethod
     def _create_model_metrics(y_test, y_predict, model, X_test):
         """
-         # https://muthu.co/understanding-the-classification-report-in-sklearn/
+         https://muthu.co/understanding-the-classification-report-in-sklearn/
         :param y_test:
         :param y_predict:
         :return:
@@ -144,6 +153,11 @@ class SequentialModel:
 
     @staticmethod
     def _print_data_loss_plot(hist):
+        """
+        Save and show the data loss plot
+        :param hist:
+        :return:
+        """
         plt.plot(hist.history['loss'])
         plt.plot(hist.history['val_loss'])
         plt.title('Model loss')
@@ -157,6 +171,11 @@ class SequentialModel:
 
     @staticmethod
     def _print_data_accuracy_plot(hist):
+        """
+        Save and show the data accuracy plot
+        :param hist:
+        :return:
+        """
         plt.plot(hist.history['accuracy'])
         plt.plot(hist.history['val_accuracy'])
         plt.title('Model accuracy')

@@ -2,8 +2,8 @@ from matplotlib.pyplot import xticks
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.linear_model import LogisticRegression
 from matplotlib import pyplot
-import Config.Constants as config
-import Services.FileUtils as fileUtils
+from Config.Constants import Constants
+from Services.FileUtils import FileUtils
 
 
 class FeaturesImpact:
@@ -26,7 +26,7 @@ class FeaturesImpact:
 
     def printImportanceLR(self, X_train, y_train):
         """
-        solver
+        Set the solver. @default: 'lbfgs'
         ‘newton-cg’ - [‘l2’, ‘none’]
         ‘lbfgs’ - [‘l2’, ‘none’]
         ‘liblinear’ - [‘l1’, ‘l2’]
@@ -50,8 +50,8 @@ class FeaturesImpact:
         xticks([*range(0, 16, 1)],
                self.plot_labels,
                rotation=45)  # Set text labels and properties.
-        fileUtils.FileUtils().delete_file(config.Constants().ML_RESULTS_DIR + 'FEATURE_IMPACT_LR.png')
-        pyplot.savefig(config.Constants().ML_RESULTS_DIR + 'FEATURE_IMPACT_LR.png')
+        FileUtils.delete_file(Constants.ML_RESULTS_DIR + 'FEATURE_IMPACT_LR.png')
+        pyplot.savefig(Constants.ML_RESULTS_DIR + 'FEATURE_IMPACT_LR.png')
         pyplot.show()
 
     def printImportanceRF(self, X_train, y_train):
@@ -73,6 +73,6 @@ class FeaturesImpact:
         xticks([*range(0, 16, 1)],
                self.plot_labels,
                rotation=45)  # Set text labels and properties.
-        fileUtils.FileUtils().delete_file(config.Constants().ML_RESULTS_DIR + 'FEATURE_IMPACT_RF.png')
-        pyplot.savefig(config.Constants().ML_RESULTS_DIR + 'FEATURE_IMPACT_RF.png')
+        FileUtils.delete_file(Constants.ML_RESULTS_DIR + 'FEATURE_IMPACT_RF.png')
+        pyplot.savefig(Constants.ML_RESULTS_DIR + 'FEATURE_IMPACT_RF.png')
         pyplot.show()

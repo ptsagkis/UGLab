@@ -28,8 +28,8 @@ class RasterAnalysis:
         # create the matrix full filled with zeros
         matrix = np.zeros((len(unique_vals1), len(unique_vals2)))
         # populate the matrix with counts of each unique value (change from --> to)
-        print('len(raster_arr1)' + str(len(raster_arr1)));
-        print('len(raster_arr1)' + str(len(raster_arr1)));
+        print('len(raster_arr1)' + str(len(raster_arr1)))
+        print('len(raster_arr1)' + str(len(raster_arr1)))
         for y in range(len(raster_arr1)):
             for x in range(len(raster_arr1[y])):
                 s1 = np.where(unique_vals1 == raster_arr1[y][x])[0][0]
