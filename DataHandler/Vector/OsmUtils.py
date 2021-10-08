@@ -96,7 +96,6 @@ class OsmUtils:
         print('Downloading OSM street data for mbr_extent ....... :' + mbr_string)
         overpass_url = 'http://overpass-api.de/api/interpreter'
         overpass_query = '[out:json];way[highway][highway~"^(' + self.ROADS_QUERY + ')$"](' + mbr_string + ');(._;>;);out meta;'
-        # overpass_query = '[out:json];way[highway][highway~"^(' + self.ROADS_QUERY + ')$"](47.1, 15.7, 47.3, 15.9);(._;>;);out meta;'
         print('overpass_query' + overpass_query)
         response = requests.get(overpass_url, params={'data': overpass_query})
         print('DataHandler downloaded!.' + str(response) + 'Preparing data......')

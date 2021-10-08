@@ -114,6 +114,18 @@ class RasterUtils:
         return matrix.count(value)
 
     @staticmethod
+    def reproject_raster(filein, fileout, epsg_code):
+        """
+        just pure raster reprojection
+        :param filein:
+        :param fileout:
+        :param epsg_code:
+        :return:
+        """
+        warp = gdal.Warp(fileout, filein, dstSRS='EPSG:'+epsg_code)
+        warp = None  # Closes the files
+
+    @staticmethod
     def crop_reproject_raster(in_raster, out_raster, cutline_shape, epsg_code):
         """
         crop the supplied raster using shape

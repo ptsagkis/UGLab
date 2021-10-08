@@ -1,20 +1,19 @@
 import ogr
 import Services.Progress as progress_bar
+import csv
 from DataHandler.Raster.RasterUtils import RasterUtils
 from DataHandler.Vector.VectorUtils import VectorUtils
 from Services.FileUtils import FileUtils
-import time
-import csv
 from osgeo import gdal
 
 
 class Translate:
     """
     This is the final step to create the Machine Learning Dataset
-
+    from the different spatial sources
     """
 
-    def translate_raster_to_tabular_corine(self,
+    def spatial_to_ml(self,
                                            filein_step1_c2,
                                            filein_step1_c1,
                                            filein_step2_c2,
@@ -60,8 +59,6 @@ class Translate:
         :return:
         """
 
-        dataset = gdal.Open(filein_step1_c2)
-        geotrans = dataset.GetGeoTransform()
         raster_arr1_c2 = RasterUtils.get_raster_array_from_image(filein_step1_c2, 1)
         raster_arr1_c1 = RasterUtils.get_raster_array_from_image(filein_step1_c1, 1)
         raster_arr2_c2 = RasterUtils.get_raster_array_from_image(filein_step2_c2, 1)
@@ -73,14 +70,19 @@ class Translate:
         FileUtils.delete_file(output_csv1)
         FileUtils.delete_file(output_csv2)
         FileUtils.delete_file(output_csv3)
-        start_time = time.time()
 
+        # get the GeoTransform from first image for later usage
+        dataset = gdal.Open(filein_step1_c2)
+        geotrans = dataset.GetGeoTransform()
+
+        # get the street features
         driver = ogr.GetDriverByName('ESRI Shapefile')
-        fetauresShp = driver.Open(road_net_shp, 0)
-        fetauresLyr = fetauresShp.GetLayer()
+        streets_shp = driver.Open(road_net_shp, 0)
+        streets_layer = streets_shp.GetLayer()
         # create Rtree spatial index to speed up road network dists
-        road_net_rtree = VectorUtils.get_rtree_index_from_shp(fetauresLyr)
+        road_net_rtree = VectorUtils.get_rtree_index_from_shp(streets_layer)
 
+        # use a progress bar to monitor
         prog_bar = progress_bar.Progress()
         counter = 0
         max_f = len(raster_arr1_c2)
@@ -92,51 +94,51 @@ class Translate:
                 if raster_arr1_c2[y][x] != -9999 and raster_arr2_c2[y][x] != -9999 and raster_arr3_c2[y][x] != -9999 and \
                         raster_arr4_c2[y][x] != -9999 \
                         and raster_arr1_c1[y][x] != 0 and raster_arr1_c1[y][x] != 0 and raster_arr3_c1[y][x] != 0:
-
+                    # get the coords
                     geopoint = RasterUtils.geocoords_from_pix(geotrans, x, y)
-
+                    # get the distance to closest road. Use the spatial index @road_net_rtree to speed up things
                     dist_road_net = VectorUtils.get_distance_to_nearest_rtree(
                         geopoint[0],
                         geopoint[1],
                         road_net_rtree,
-                        fetauresLyr)
-
+                        streets_layer)
+                    # the distance the closest urban center
                     dist_urban_center = VectorUtils.get_distance_to_nearest(
                         geopoint[0],
                         geopoint[1],
                         urban_centers_shp)
-
+                    # the distance to coast line
                     dist_coast_line = VectorUtils.get_distance_to_nearest(
                         geopoint[0],
                         geopoint[1],
                         coast_line_shp, False)
-
+                    # height val
                     height_val = RasterUtils.get_raster_value_at_geopoint(
                         height_dem,
                         geopoint
                     )
-
+                    # slope val
                     slope_val = RasterUtils.get_raster_value_at_geopoint(
                         slope_dem,
                         geopoint
                     )
-
+                    # hillshade val
                     hillshade_val = RasterUtils.get_raster_value_at_geopoint(
                         hillshade_dem,
                         geopoint
                     )
-
+                    # aspect val
                     aspect_val = RasterUtils.get_raster_value_at_geopoint(
                         aspect_dem,
                         geopoint
                     )
-
+                    # population change val
                     pop_val = float(VectorUtils.get_attribute_value_on_overlap(
                         pop_shp,
                         geopoint,
                         pop_shp_field
                     ))
-
+                    # surrounding environment in terms of land use
                     count_definitions = [1, 2, 3, 4, 5, 6, 7, 8]
                     count_vals1 = []
                     neigh_vals1 = RasterUtils.get_neighbor_values(raster_arr1_c1, [y, x], 1)
@@ -208,7 +210,7 @@ class Translate:
                                                    quoting=csv.QUOTE_MINIMAL)
                         pixel_writer3 = csv.writer(pix_file3, delimiter=';', quotechar='"',
                                                    quoting=csv.QUOTE_MINIMAL)
-                        # finally write pixel values to the csv file
+                        # finally write pixel values to the csv files
                         pixel_writer1.writerow(data_row1)
                         pixel_writer2.writerow(data_row2)
                         pixel_writer3.writerow(data_row3)

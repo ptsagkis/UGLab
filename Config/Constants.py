@@ -3,9 +3,9 @@ class Constants:
     # PYTHON_LOC = 'C:\\Users\\Acer\\AppData\\Local\\Programs\\Python\\Python37\\python.exe'
     # GDAL_CALC_SCRIPT_LOC = 'C:\\Users\\Acer\\AppData\\Local\\Programs\\Python\\Python37\\Scripts\\gdal_calc.py'
     # GDAL_SCRIPTS_PATH = 'C:\\Users\\Acer\\AppData\\Local\\Programs\\Python\\Python37\\Scripts'
-    PYTHON_LOC = 'C:\\Users\\Acer\\AppData\\Local\\Programs\\Python\\Python37\\python.exe'
-    GDAL_CALC_SCRIPT_LOC = 'C:\\Users\\Acer\\AppData\\Local\\Programs\\Python\\Python37\\Scripts\\gdal_calc.py'
-    PROJECT_PATH = 'C:\\PHD\\UGLab_hrakleio\\'
+    # PYTHON_LOC = 'C:\\Users\\Acer\\AppData\\Local\\Programs\\Python\\Python37\\python.exe'
+    # GDAL_CALC_SCRIPT_LOC = 'C:\\Users\\Acer\\AppData\\Local\\Programs\\Python\\Python37\\Scripts\\gdal_calc.py'
+    PROJECT_PATH = 'C:\\PHD\\UGLab_athens\\'
     # this is where source data exist
     SOURCE_DATA_PATH = 'E:\\backup_files\\PHD_\\data\\'
     SOURCE_CORINE_FILES = [
@@ -14,49 +14,55 @@ class Constants:
         'C:\\PHD\\corine\\U2018_CLC2012_V2020_20u1.tif',
         'C:\\PHD\\corine\\U2018_CLC2018_V2020_20u1.tif'
     ]
-    PROJECT_SHAPE_MBR = 'C:\\PHD\\UGLab_test_project\\MUNICH_MBR.shp'
-    PROJECT_SHAPE_MBR_BARCHELONA = 'C:\\PHD\\UGLab_barchelona\\BARCHELONA_MBR.shp'
-    PROJECT_SHAPE_MBR_GRAZ = PROJECT_PATH + 'graz_mbr.shp'
-    PROJECT_SHAPE_MBR_MANCHESTER = PROJECT_PATH + 'manchester_mbr.shp'
-    PROJECT_SHAPE_MBR_AMSTERDAM = PROJECT_PATH + 'amsterdam_mbr.shp'
-    PROJECT_SHAPE_MBR_MILANO = PROJECT_PATH + 'milano_mbr.shp'
-    PROJECT_SHAPE_MBR_BERLIN = PROJECT_PATH + 'berlin_mbr.shp'
-    PROJECT_SHAPE_MBR_BRUSSELS = PROJECT_PATH + 'brussels_mbr.shp'
-    PROJECT_SHAPE_MBR_PARIS = PROJECT_PATH + 'paris_mbr.shp'
-    PROJECT_SHAPE_MBR_COPENHAGEN = PROJECT_PATH + 'copenhagen_mbr.shp'
-    PROJECT_SHAPE_MBR_STOCKHOLM = PROJECT_PATH + 'stockholm_mbr.shp'
-    PROJECT_SHAPE_MBR_ATHENS = PROJECT_PATH + 'athens_mbr.shp'
-    PROJECT_SHAPE_MBR_WIEN = PROJECT_PATH + 'wien_mbr.shp'
-    PROJECT_SHAPE_MBR_ROMA = PROJECT_PATH + 'roma_mbr.shp'
-    PROJECT_SHAPE_MBR_THESSALONIKI = PROJECT_PATH + 'thessaloniki_mbr.shp'
-    PROJECT_SHAPE_MBR_LARISSA = PROJECT_PATH + 'larissa_mbr.shp'
-    PROJECT_SHAPE_MBR_PATRA = PROJECT_PATH + 'patra_mbr.shp'
-    PROJECT_SHAPE_MBR_HRAKLEIO = PROJECT_PATH + 'hrakleio_mbr.shp'
-    PROJECT_EPSG = 3857
-    PROJECT_PIXEL_METERS = 100
+    PROJECT_EPSG = '3857'
+    # PROJECT_PIXEL_METERS = 100
     ML_RESULTS_DIR = PROJECT_PATH + 'ml_data\\'
     MODEL_CHECKPOINT_FILE = PROJECT_PATH + 'ml_data\\weights_corine.hdf5'
-    # HYPSOGRAPHY
-    INPUT_DEM_FILE = SOURCE_DATA_PATH + 'eu_dem_v11_E40N20_3857.TIF'
-    INPUT_DEM_FILE_BARCHELONA = SOURCE_DATA_PATH + 'eu_dem_v11_E30N20_3857.TIF'
-    INPUT_DEM_FILE_GRAZ = SOURCE_DATA_PATH + 'eu_dem_v11_E40N20_3857.TIF'
-    INPUT_DEM_FILE_MANCHESTER = SOURCE_DATA_PATH + 'eu_dem_v11_E30N30_3857.TIF'
-    INPUT_DEM_FILE_AMSTERDAM = SOURCE_DATA_PATH + 'eu_dem_v11_E30N30_3857.TIF'
-    INPUT_DEM_FILE_MILANO = SOURCE_DATA_PATH + 'eu_dem_v11_E40N20_3857.TIF'
-    INPUT_DEM_FILE_BERLIN = SOURCE_DATA_PATH + 'eu_dem_v11_E40N30_3857.TIF'
-    INPUT_DEM_FILE_BRUSSELS = SOURCE_DATA_PATH + 'eu_dem_v11_E30N30_3857.TIF'
-    INPUT_DEM_FILE_PARIS = SOURCE_DATA_PATH + 'eu_dem_v11_E30N20_3857.TIF'
-    INPUT_DEM_FILE_COPENHAGEN = SOURCE_DATA_PATH + 'eu_dem_v11_E40N30_3857.TIF'
-    INPUT_DEM_FILE_STOCKHOLM = SOURCE_DATA_PATH + 'eu_dem_v11_E40N40_3857.TIF'
-    INPUT_DEM_FILE_ATHENS = SOURCE_DATA_PATH + 'eu_dem_v11_E50N10_3857.TIF'
-    INPUT_DEM_FILE_WIEN = SOURCE_DATA_PATH + 'eu_dem_v11_E40N20_3857.TIF'
-    INPUT_DEM_FILE_ROMA = SOURCE_DATA_PATH + 'eu_dem_v11_E40N20_3857.TIF'
-    INPUT_DEM_FILE_THESSALONIKI = SOURCE_DATA_PATH + 'eu_dem_v11_E50N20_3857.TIF'
-    INPUT_DEM_FILE_LARISSA = SOURCE_DATA_PATH + 'eu_dem_v11_E50N10_3857.TIF'
-    INPUT_DEM_FILE_PATRA = SOURCE_DATA_PATH + 'eu_dem_v11_E50N10_3857.TIF'
-    INPUT_DEM_FILE_HRAKLEIO = SOURCE_DATA_PATH + 'eu_dem_v11_E50N10_3857.TIF'
 
-    ############## DATA PREPARATION RELATED CONFIG ########################
+
+    # PROJECT_SHAPE_MBR = 'C:\\PHD\\UGLab_test_project\\MUNICH_MBR.shp'
+    # PROJECT_SHAPE_MBR_BARCHELONA = 'C:\\PHD\\UGLab_barchelona\\BARCHELONA_MBR.shp'
+    # PROJECT_SHAPE_MBR_GRAZ = PROJECT_PATH + 'graz_mbr.shp'
+    # PROJECT_SHAPE_MBR_MANCHESTER = PROJECT_PATH + 'manchester_mbr.shp'
+    # PROJECT_SHAPE_MBR_AMSTERDAM = PROJECT_PATH + 'amsterdam_mbr.shp'
+    # PROJECT_SHAPE_MBR_MILANO = PROJECT_PATH + 'milano_mbr.shp'
+    # PROJECT_SHAPE_MBR_BERLIN = PROJECT_PATH + 'berlin_mbr.shp'
+    # PROJECT_SHAPE_MBR_BRUSSELS = PROJECT_PATH + 'brussels_mbr.shp'
+    # PROJECT_SHAPE_MBR_PARIS = PROJECT_PATH + 'paris_mbr.shp'
+    # PROJECT_SHAPE_MBR_COPENHAGEN = PROJECT_PATH + 'copenhagen_mbr.shp'
+    # PROJECT_SHAPE_MBR_STOCKHOLM = PROJECT_PATH + 'stockholm_mbr.shp'
+    # PROJECT_SHAPE_MBR_ATHENS = PROJECT_PATH + 'athens_mbr.shp'
+    # PROJECT_SHAPE_MBR_WIEN = PROJECT_PATH + 'wien_mbr.shp'
+    # PROJECT_SHAPE_MBR_ROMA = PROJECT_PATH + 'roma_mbr.shp'
+    # PROJECT_SHAPE_MBR_THESSALONIKI = PROJECT_PATH + 'thessaloniki_mbr.shp'
+    # PROJECT_SHAPE_MBR_LARISSA = PROJECT_PATH + 'larissa_mbr.shp'
+    # PROJECT_SHAPE_MBR_PATRA = PROJECT_PATH + 'patra_mbr.shp'
+    # PROJECT_SHAPE_MBR_HRAKLEIO = PROJECT_PATH + 'hrakleio_mbr.shp'
+
+    # HYPSOGRAPHY
+    # INPUT_DEM_FILE = SOURCE_DATA_PATH + 'eu_dem_v11_E40N20_3857.TIF'
+    # INPUT_DEM_FILE_BARCHELONA = SOURCE_DATA_PATH + 'eu_dem_v11_E30N20_3857.TIF'
+    # INPUT_DEM_FILE_GRAZ = SOURCE_DATA_PATH + 'eu_dem_v11_E40N20_3857.TIF'
+    # INPUT_DEM_FILE_MANCHESTER = SOURCE_DATA_PATH + 'eu_dem_v11_E30N30_3857.TIF'
+    # INPUT_DEM_FILE_AMSTERDAM = SOURCE_DATA_PATH + 'eu_dem_v11_E30N30_3857.TIF'
+    # INPUT_DEM_FILE_MILANO = SOURCE_DATA_PATH + 'eu_dem_v11_E40N20_3857.TIF'
+    # INPUT_DEM_FILE_BERLIN = SOURCE_DATA_PATH + 'eu_dem_v11_E40N30_3857.TIF'
+    # INPUT_DEM_FILE_BRUSSELS = SOURCE_DATA_PATH + 'eu_dem_v11_E30N30_3857.TIF'
+    # INPUT_DEM_FILE_PARIS = SOURCE_DATA_PATH + 'eu_dem_v11_E30N20_3857.TIF'
+    # INPUT_DEM_FILE_COPENHAGEN = SOURCE_DATA_PATH + 'eu_dem_v11_E40N30_3857.TIF'
+    # INPUT_DEM_FILE_STOCKHOLM = SOURCE_DATA_PATH + 'eu_dem_v11_E40N40_3857.TIF'
+    # INPUT_DEM_FILE_ATHENS = SOURCE_DATA_PATH + 'eu_dem_v11_E50N10_3857.TIF'
+    # INPUT_DEM_FILE_WIEN = SOURCE_DATA_PATH + 'eu_dem_v11_E40N20_3857.TIF'
+    # INPUT_DEM_FILE_ROMA = SOURCE_DATA_PATH + 'eu_dem_v11_E40N20_3857.TIF'
+    # INPUT_DEM_FILE_THESSALONIKI = SOURCE_DATA_PATH + 'eu_dem_v11_E50N20_3857.TIF'
+    # INPUT_DEM_FILE_LARISSA = SOURCE_DATA_PATH + 'eu_dem_v11_E50N10_3857.TIF'
+    # INPUT_DEM_FILE_PATRA = SOURCE_DATA_PATH + 'eu_dem_v11_E50N10_3857.TIF'
+    # INPUT_DEM_FILE_HRAKLEIO = SOURCE_DATA_PATH + 'eu_dem_v11_E50N10_3857.TIF'
+    ####################################################################################
+    #################### DATA PREPARATION RELATED CONFIG ###############################
+    #################### DONT MAKE CHANGES THIS POINT FORWARD ##########################
+    ##################### unless you know what you are doing ##########################
+    ####################################################################################
     # CORINE Dataset
     OUTPUT_RECLASS_RASTER_CORINE_STEPS_CODE_1 = [
         PROJECT_PATH + 'CORINE_2000_c1.tif',
@@ -100,24 +106,12 @@ class Constants:
     OUTPUT_CHANGES_MATRIX_C1_STEP_2_3 = PROJECT_PATH + 'changes_matrix_c1_2_3.csv'
     OUTPUT_CHANGES_MATRIX_C2_STEP_1_2 = PROJECT_PATH + 'changes_matrix_c2_1_2.csv'
     OUTPUT_CHANGES_MATRIX_C2_STEP_2_3 = PROJECT_PATH + 'changes_matrix_c2_2_3.csv'
-    OUTPUT_FOOTPRINT_CHANGES_MATRIX_C2_STEP_1_2_U = PROJECT_PATH + 'footprint_changes_c1_1_2_urbanise.csv'
-    OUTPUT_FOOTPRINT_CHANGES_MATRIX_C2_STEP_1_2_D = PROJECT_PATH + 'footprint_changes_c1_1_2_deurbanise.csv'
-    OUTPUT_FOOTPRINT_CHANGES_MATRIX_C2_STEP_2_3_U = PROJECT_PATH + 'footprint_changes_c1_2_3_urbanise.csv'
-    OUTPUT_FOOTPRINT_CHANGES_MATRIX_C2_STEP_2_3_D = PROJECT_PATH + 'footprint_changes_c1_2_3_deurbanise.csv'
 
-    # DATA SCIENCE - MACHINE LEARNING DATA TRANSLATOR
-    OUTPUT_ML_DATA1 = PROJECT_PATH + 'mldata1.csv'
-    OUTPUT_ML_DATA2 = PROJECT_PATH + 'mldata2.csv'
-    OUTPUT_ML_DATA3 = PROJECT_PATH + 'mldata3.csv'
 
     # DATA SCIENCE - MACHINE LEARNING DATA TRANSLATOR CORINE
     OUTPUT_CORINE_ML_DATA1 = PROJECT_PATH + 'corine_mldata1.csv'
     OUTPUT_CORINE_ML_DATA2 = PROJECT_PATH + 'corine_mldata2.csv'
     OUTPUT_CORINE_ML_DATA3 = PROJECT_PATH + 'corine_mldata3.csv'
-
-    # MODEL OUTPUTS
-    OUTPUT_PREDICTION_CSV1 = PROJECT_PATH + 'ml_data\\predict1.csv'
-    OUTPUT_PREDICTION_CSV2 = PROJECT_PATH + 'ml_data\\predict2.csv'
 
     # MODEL OUTPUTS CORINE
     OUTPUT_PREDICTION_CORINE_CSV1 = PROJECT_PATH + 'ml_data\\predict1_corine.csv'
