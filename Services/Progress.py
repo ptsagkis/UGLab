@@ -5,9 +5,9 @@ class Progress:
     """
     Class to support progress bar notification
     """
+
     def __init__(self, bar_length=60):
         self.bar_length = bar_length
-
 
     def progress(self, count, total, prefix='', suffix=''):
         """

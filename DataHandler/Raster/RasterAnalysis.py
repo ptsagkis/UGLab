@@ -4,17 +4,20 @@ import numpy as np
 import DataHandler.Raster.RasterUtils as rast_utils
 import Services.FileUtils as file_utils
 
+
 class RasterAnalysis:
     """
     A class to record the changes taking place among to time series steps
 
     """
+
     @staticmethod
     def raster_changes_matrix(rast1, rast2, output_csv):
         """
         Present a change value matrix into csv format
         For each raster we get the distinct pixel values
         and we map changes from raster1 to raster2 into a 2d matrix
+        :param output_csv:
         :param rast1:
         :param rast2:
         :output_csv: the path to save in csv format the 2d changes matrix

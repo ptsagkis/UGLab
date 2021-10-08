@@ -6,6 +6,7 @@ class FileUtils:
     """
     Some static methods to support file/ folder delete and creation
     """
+
     @staticmethod
     def create_dir(path):
         """

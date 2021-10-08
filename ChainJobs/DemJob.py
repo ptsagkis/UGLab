@@ -5,10 +5,10 @@ from Config.Constants import Constants
 
 class DemJobs:
 
-    def __init__(self, INPUT_DEM_FILE_ATHENS, PROJECT_SHAPE_MBR, PROJECT_PATH):
-        self.PROJECT_SHAPE_MBR = PROJECT_SHAPE_MBR
-        self.PROJECT_PATH = PROJECT_PATH
-        self.INPUT_DEM_FILE_ATHENS = INPUT_DEM_FILE_ATHENS
+    def __init__(self, input_dem_file, project_shape_mbr, project_path):
+        self.PROJECT_SHAPE_MBR = project_shape_mbr
+        self.PROJECT_PATH = project_path
+        self.INPUT_DEM_FILE_ATHENS = input_dem_file
 
     def execute(self):
         RasterUtils.crop_reproject_raster(

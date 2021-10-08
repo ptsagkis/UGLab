@@ -38,7 +38,7 @@ class SequentialModel:
         :return: void
         """
         # create the folder to hold ml data
-        file_utils.FileUtils().create_dir(config.Constants().PROJECT_PATH+'\\ml_data')
+        file_utils.FileUtils().create_dir(config.Constants().PROJECT_PATH + '\\ml_data')
 
         # load the train dataset
         train_data_set = np.loadtxt(train_data_csv, delimiter=';')
@@ -47,7 +47,7 @@ class SequentialModel:
 
         # split into input (X) and output (y) variables and do some normalisation
         x_coords, y_coords, X, X_test, X_predict, y, y_from, y_test = self._normalize_data(
-            train_data_set,test_data_set,predict_data_set, normalize
+            train_data_set, test_data_set, predict_data_set, normalize
         )
         featsimp.FeaturesImpact().printImportanceLR(X, y)
         featsimp.FeaturesImpact().printImportanceRF(X, y)
@@ -69,12 +69,13 @@ class SequentialModel:
         y_predict = np.round(model.predict(X_test), 0)
         y_future_predict = np.round(model.predict(X_predict), 0)
         # do the metrics
-        self._create_model_metrics(y_test, y_predict,model, X_test)
+        self._create_model_metrics(y_test, y_predict, model, X_test)
 
         if os.path.exists(output_csv1):
             os.remove(output_csv1)
         with open(output_csv1, 'ab') as f:
-            np.savetxt(f, np.around(np.column_stack((x_coords, y_coords, y_from, y_test, y_predict, y_future_predict)), decimals=2),
+            np.savetxt(f, np.around(np.column_stack((x_coords, y_coords, y_from, y_test, y_predict, y_future_predict)),
+                                    decimals=2),
                        fmt='%.2f',
                        delimiter=';')
         self._print_data_loss_plot(hist_2)
@@ -167,7 +168,6 @@ class SequentialModel:
         file_utils.FileUtils().delete_file(config.Constants().ML_RESULTS_DIR + 'val_loss.png')
         plt.savefig(config.Constants().ML_RESULTS_DIR + 'val_loss.png')
         plt.show()
-
 
     @staticmethod
     def _print_data_accuracy_plot(hist):

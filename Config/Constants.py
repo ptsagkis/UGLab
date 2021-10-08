@@ -19,7 +19,6 @@ class Constants:
     ML_RESULTS_DIR = PROJECT_PATH + 'ml_data\\'
     MODEL_CHECKPOINT_FILE = PROJECT_PATH + 'ml_data\\weights_corine.hdf5'
 
-
     # PROJECT_SHAPE_MBR = 'C:\\PHD\\UGLab_test_project\\MUNICH_MBR.shp'
     # PROJECT_SHAPE_MBR_BARCHELONA = 'C:\\PHD\\UGLab_barchelona\\BARCHELONA_MBR.shp'
     # PROJECT_SHAPE_MBR_GRAZ = PROJECT_PATH + 'graz_mbr.shp'
@@ -106,7 +105,6 @@ class Constants:
     OUTPUT_CHANGES_MATRIX_C1_STEP_2_3 = PROJECT_PATH + 'changes_matrix_c1_2_3.csv'
     OUTPUT_CHANGES_MATRIX_C2_STEP_1_2 = PROJECT_PATH + 'changes_matrix_c2_1_2.csv'
     OUTPUT_CHANGES_MATRIX_C2_STEP_2_3 = PROJECT_PATH + 'changes_matrix_c2_2_3.csv'
-
 
     # DATA SCIENCE - MACHINE LEARNING DATA TRANSLATOR CORINE
     OUTPUT_CORINE_ML_DATA1 = PROJECT_PATH + 'corine_mldata1.csv'

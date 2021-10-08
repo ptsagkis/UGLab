@@ -58,7 +58,11 @@ class OsmUtils:
         mbr_string = str(x_min) + ',' + str(y_min) + ',' + str(x_max) + ',' + str(y_max)
         print('Downloading OSM places data for mbr_extent ....... :' + mbr_string)
         overpass_url = 'http://overpass-api.de/api/interpreter'
-        overpass_query = '[out:json];node[place~"^(' + self.SUB_CENTER_QUERY + ')$"](' + mbr_string + ');(._;>;);out meta;'
+
+        overpass_query = '[out:json];node[place~"^(' + \
+                         self.SUB_CENTER_QUERY + ')$"](' + \
+                         mbr_string + ');(._;>;);out meta;'
+
         response = requests.get(overpass_url, params={'data': overpass_query})
         nodes = self._parse_overpass_urban_subcenters_response(response)
         print('DataHandler(sub centers) downloaded!.' + str(nodes) + 'Preparing data......')

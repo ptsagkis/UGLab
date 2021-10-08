@@ -12,8 +12,8 @@ class Translate:
     This is the final step to create the Machine Learning Dataset
     from the different spatial sources
     """
-
-    def spatial_to_ml(self,
+    @staticmethod
+    def spatial_to_ml(
                                            filein_step1_c2,
                                            filein_step1_c1,
                                            filein_step2_c2,

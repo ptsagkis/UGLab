@@ -16,7 +16,7 @@ def run_athens_demo():
     # ReclassCorine(Constants.PROJECT_PATH).run_reclass_corine()
     # print('finish corine reclass')
 
-    print('start corine utils'+Constants.PROJECT_PATH)
+    print('start corine utils' + Constants.PROJECT_PATH)
     CorineJob(PROJECT_SHAPE_MBR_ATHENS, Constants.PROJECT_PATH).execute()
     print('finish corine utils')
 
@@ -27,5 +27,6 @@ def run_athens_demo():
     #     Constants.PROJECT_PATH
     # ).execute()
     # print('finish DEM utilities')
+
 
 run_athens_demo()

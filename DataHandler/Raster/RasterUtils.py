@@ -48,8 +48,8 @@ class RasterUtils:
         """
         pass the image and the band you want to grab
         get it back a 2d array
+        :param band_idx: 
         :param raster:
-        :param band:
         :return:
         """
         dataset = gdal.Open(raster)
@@ -74,7 +74,6 @@ class RasterUtils:
         px = int((mx - gt[0]) / gt[1])  # x pixel
         py = int((my - gt[3]) / gt[5])  # y pixel
         return rb.ReadAsArray(px, py, 1, 1)[0][0]
-
 
     @staticmethod
     def get_neighbor_values(raster_arr, position, radius):
@@ -102,7 +101,6 @@ class RasterUtils:
         else:
             return list(np.delete(ret_array, len(ret_array) // 2))
 
-
     @staticmethod
     def count_value_on_matrix(matrix, value):
         """
@@ -122,7 +120,7 @@ class RasterUtils:
         :param epsg_code:
         :return:
         """
-        warp = gdal.Warp(fileout, filein, dstSRS='EPSG:'+epsg_code)
+        warp = gdal.Warp(fileout, filein, dstSRS='EPSG:' + epsg_code)
         warp = None  # Closes the files
 
     @staticmethod
@@ -136,7 +134,8 @@ class RasterUtils:
         :param epsg_code:
         :return:
         """
-        warp = gdal.Warp(out_raster, in_raster, cutlineDSName=cutline_shape, cropToCutline=True, dstSRS='EPSG:'+epsg_code)
+        warp = gdal.Warp(out_raster, in_raster, cutlineDSName=cutline_shape, cropToCutline=True,
+                         dstSRS='EPSG:' + epsg_code)
         warp = None  # Closes the files
 
     @staticmethod
@@ -145,6 +144,7 @@ class RasterUtils:
         Present a change value matrix into csv format
         For each raster we get the distinct pixel values
         and we map changes from raster1 to raster2 into a 2d matrix
+        :param output_csv:
         :param rast1:
         :param rast2:
         :output_csv: the path to save in csv format the 2d changes matrix
@@ -158,8 +158,8 @@ class RasterUtils:
         # create the matrix full filled with zeros
         matrix = np.zeros((len(unique_vals1), len(unique_vals2)))
         # populate the matrix with counts of each unique value (change from --> to)
-        print('len(raster_arr1)' + str(len(raster_arr1)));
-        print('len(raster_arr1)' + str(len(raster_arr1)));
+        print('len(raster_arr1)' + str(len(raster_arr1)))
+        print('len(raster_arr1)' + str(len(raster_arr1)))
         for y in range(len(raster_arr1)):
             for x in range(len(raster_arr1[y])):
                 s1 = np.where(unique_vals1 == raster_arr1[y][x])[0][0]

@@ -23,8 +23,6 @@ class Geostats:
         """
         Using the downloaded data and this method create a pop grid
         covering the study area and holding pops for 2006 + 2011 + change %
-        :param shape1: --> Grid_ETRS89_LAEA_1K_ref_GEOSTAT_2006.shp
-        :param shape2: --> Grid_ETRS89_LAEA_1K-ref_GEOSTAT_POP_2011_V2_0_1.shp
         :param shape_out: --> study_area_pop_changes output shapefile
         :param field1: --> field of shapefile1 holding pop count
         :param field2: --> field of shapefile2 holding pop count

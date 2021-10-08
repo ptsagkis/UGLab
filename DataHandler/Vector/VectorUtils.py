@@ -154,9 +154,9 @@ class VectorUtils:
         if fetauresLyr.GetFeatureCount() == 0:
             return 0
         else:
-            if index_enable == True:
-                filteredFetauresLyr = VectorUtils.filter_features_at_point(fetauresLyr, point, deep)
-                dist = VectorUtils.get_minimum_dist(point, filteredFetauresLyr)
+            if index_enable is True:
+                filtered_features_lyr = VectorUtils.filter_features_at_point(fetauresLyr, point, deep)
+                dist = VectorUtils.get_minimum_dist(point, filtered_features_lyr)
             else:
                 dist = VectorUtils.get_minimum_dist(point, fetauresLyr)
         return dist
@@ -166,7 +166,7 @@ class VectorUtils:
         """
         Method to filter features within the bbox constructed from point and pixel size
         incrementation until we find at least 1 feature.
-        :param meters_increment: increment meters until one found
+        :param deep: meters multiplier to wide the mbr until find one feature
         :param layer: layer with features
         :param point: point to use in order to build the envelope
         :return:
@@ -178,15 +178,15 @@ class VectorUtils:
         layer.SetSpatialFilterRect(xmin, ymin, xmax, ymax)
         while layer.GetFeatureCount() == 0:
             # increment the multiplier of deep
-            VectorUtils.filter_features_at_point(layer, point, deep+1)
+            VectorUtils.filter_features_at_point(layer, point, deep + 1)
         return layer
 
     @staticmethod
     def get_minimum_dist(point, filtered_feats):
         """
         get the minimum distance between layer features and supplied point
+        :param filtered_feats: ogr layer
         :param point: ogr geometry Point
-        :param filterdLines: ogr layer
         :return: distance to nearest
         """
         dists = []
@@ -215,12 +215,11 @@ class VectorUtils:
         dist = VectorUtils.get_minimum_dist(point, feats)
         return dist
 
-
     @staticmethod
     def get_rtree_index_from_shp(shp_lyr):
         """
         pass a layer get its Rtree index back
-        :param layer:
+        :param shp_lyr:
         :return:
         """
         index = rtree.index.Index(interleaved=False)
@@ -240,16 +239,16 @@ class VectorUtils:
         for fid in list(index.intersection(search_envelope)):
             feats.append(featslyr.GetFeature(fid))
         while len(feats) == 0:
-            feats = VectorUtils.get_features_at_envelope(point, index, featslyr, multiplier+1)
+            feats = VectorUtils.get_features_at_envelope(point, index, featslyr, multiplier + 1)
         return feats
 
     @staticmethod
     def get_attribute_value_on_overlap(shp_path, geopoint, value_field, no_found_val=-100):
         """
         Get the field value for the geometry overlapping the supplied point
+        :param no_found_val: @defaults: -100
         :param geopoint:
         :param shp_path:
-        :param point:
         :param value_field:
         :return:
         """
