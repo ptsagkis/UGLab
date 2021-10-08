@@ -1,5 +1,7 @@
 import csv
-import Config.Constants as config
+from Config.Constants import Constants
+from Services.SpinnerThread import SpinnerThread
+from Services.Progress import Progress
 from osgeo import ogr
 
 
@@ -16,8 +18,8 @@ class Geostats:
     """
 
     def __init__(self):
-        self.shape1 = config.Constants.OUTPUT_POP_2006
-        self.shape2 = config.Constants.OUTPUT_POP_2011
+        self.shape1 = Constants.OUTPUT_POP_2006
+        self.shape2 = Constants.OUTPUT_POP_2011
 
     def create_pop_grid_changes(self, shape_out, field1, field2, input_csv1, input_csv2):
         """
@@ -53,6 +55,10 @@ class Geostats:
         output_layer.CreateField(pop_change_field)
 
         existingids = []
+        pbar = Progress()
+
+        counter = 0
+        max_f = in1_layer.GetFeatureCount()
 
         for feat1 in in1_layer:
             feature_out = ogr.Feature(output_layer.GetLayerDefn())
@@ -61,6 +67,11 @@ class Geostats:
             feature_out.SetGeometry(feat1.GetGeometryRef())
             feature_out.SetField('GRID_ID', cur1_val)
             output_layer.CreateFeature(feature_out)
+            counter = counter + 1
+            pbar.progress(counter, max_f, 'Geostats pop 2006: ', 'Progress:')
+
+        counter = 0
+        max_f = in2_layer.GetFeatureCount()
 
         for feat2 in in2_layer:
             cur2_val = feat2.GetField(field2)
@@ -70,10 +81,18 @@ class Geostats:
                 feature_out.SetField('GRID_ID', cur2_val)
                 feature_out.SetGeometry(feat2.GetGeometryRef())
                 output_layer.CreateFeature(feature_out)
+            counter = counter + 1
+            pbar.progress(counter, max_f, 'Geostats pop 2011: ', 'Progress:')
 
+        spinner_thread = SpinnerThread()
+        print("\n reading population csv file...")
+        spinner_thread.start()
         rows_2006 = self._filter_csv_file(input_csv1, existingids, 0)
         rows_2011 = self._filter_csv_file(input_csv2, existingids, 1)
+        spinner_thread.stop()
 
+        counter = 0
+        max_f = output_layer.GetFeatureCount()
         for feat in output_layer:
             val1 = self._get_pop_from_gid(rows_2006, feat.GetField(0), 0, 1)
             val2 = self._get_pop_from_gid(rows_2011, feat.GetField(0), 1, 0)
@@ -89,6 +108,8 @@ class Geostats:
             else:
                 feat.SetField('POP_CHANGE', ((int(val2) / int(val1)) - 1) * 100)
             output_layer.SetFeature(feat)
+            counter = counter + 1
+            pbar.progress(counter, max_f, 'Geostats pop change creation: ', 'Progress:')
         ds = None
         out_shape = None
 
