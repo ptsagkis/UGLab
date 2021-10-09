@@ -1,10 +1,11 @@
 import ogr
-import Services.Progress as progress_bar
 import csv
+import gdal
 from DataHandler.Raster.RasterUtils import RasterUtils
 from DataHandler.Vector.VectorUtils import VectorUtils
 from Services.FileUtils import FileUtils
-from osgeo import gdal
+
+from Services.Progress import Progress
 
 
 class Translate:
@@ -83,13 +84,13 @@ class Translate:
         road_net_rtree = VectorUtils.get_rtree_index_from_shp(streets_layer)
 
         # use a progress bar to monitor
-        prog_bar = progress_bar.Progress()
+        prog_bar = Progress()
         counter = 0
         max_f = len(raster_arr1_c2)
 
         for y in range(len(raster_arr1_c2)):
             counter = counter + 1
-            prog_bar.progress(counter, max_f, 'Generating ML Data: ', 'Progress:')
+            prog_bar.progress(counter, max_f, 'Converting spatial data to tabular: ', 'Progress:')
             for x in range(len(raster_arr1_c2[y])):
                 if raster_arr1_c2[y][x] != -9999 and raster_arr2_c2[y][x] != -9999 and raster_arr3_c2[y][x] != -9999 and \
                         raster_arr4_c2[y][x] != -9999 \

@@ -196,7 +196,7 @@ class OsmUtils:
             prog_bar.progress(counter, max_f, 'Convert OSM (streets) data to shapefile: ', 'Progress:')
             line = OsmUtils._get_line_from_way(way, np_nodes)
             feature_out = ogr.Feature(output_layer.GetLayerDefn())
-            feature_out.SetField('type', OsmUtils.ROAD_TYPES[way['type']])
+            feature_out.SetField('type', __class__().ROAD_TYPES[way['type']])
             feature_out.SetGeometry(
                 Reproject.reproject_geometry(line, OsmUtils._get_overpass_spatial_ref(), mbr_prj).Simplify(10)
             )

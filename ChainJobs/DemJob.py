@@ -3,7 +3,7 @@ from DataHandler.Raster.RasterUtils import RasterUtils
 from Config.Constants import Constants
 
 
-class DemJobs:
+class DemJob:
 
     def __init__(self, input_dem_file, project_shape_mbr, project_path):
         self.PROJECT_SHAPE_MBR = project_shape_mbr
