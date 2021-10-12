@@ -1,4 +1,3 @@
-import h5py
 import numpy as np
 import matplotlib.pyplot as plt
 import os
@@ -6,26 +5,24 @@ import os
 from keras import Sequential
 
 from keras.callbacks import ModelCheckpoint
-from keras.layers import Dense, Dropout
-from keras.optimizers import SGD
-from keras.models import load_model
+from keras.layers import Dense
 from sklearn.metrics import classification_report, precision_score, recall_score, f1_score, cohen_kappa_score
-from sklearn.preprocessing import MinMaxScaler, StandardScaler
-import Model.FeaturesImpact as featsimp
-import Config.Constants as config
-import Services.FileUtils as file_utils
+from sklearn.preprocessing import StandardScaler
+from Model.FeaturesImpact import FeaturesImpact
+from Services.FileUtils import FileUtils
+from Config.Constants import Constants
 
 
 class SequentialModel:
-    '''
-    A class to support model execution procedure
-    '''
+    """
+     A class to support model execution procedure
+    """
 
     def __init__(self, epochs=300, batch_size=500):
         self.epochs = epochs
         self.batch_size = batch_size
 
-    def run_model(self, train_data_csv, test_data_csv, predict_data_csv, output_csv1, output_csv2, normalize=False):
+    def run_model(self, train_data_csv, test_data_csv, predict_data_csv, output_csv1, normalize=False):
         """
         Get the data set created from previous steps @MLData.Translate
         and break them down into ML data
@@ -33,12 +30,11 @@ class SequentialModel:
         :param test_data_csv:
         :param predict_data_csv:
         :param output_csv1:
-        :param output_csv2:
         :param normalize:
         :return: void
         """
         # create the folder to hold ml data
-        file_utils.FileUtils().create_dir(config.Constants().PROJECT_PATH + '\\ml_data')
+        FileUtils.create_dir(Constants.PROJECT_PATH + '\\ml_data')
 
         # load the train dataset
         train_data_set = np.loadtxt(train_data_csv, delimiter=';')
@@ -49,12 +45,14 @@ class SequentialModel:
         x_coords, y_coords, X, X_test, X_predict, y, y_from, y_test = self._normalize_data(
             train_data_set, test_data_set, predict_data_set, normalize
         )
-        featsimp.FeaturesImpact().printImportanceLR(X, y)
-        featsimp.FeaturesImpact().printImportanceRF(X, y)
+        # draw feature impact to a plot
+        feats_impact = FeaturesImpact()
+        feats_impact.printImportanceLR(X, y)
+        feats_impact.printImportanceRF(X, y)
         # get the number of columns out of the first sample
         model = self._create_model(len(X[0]))
 
-        checkpoint = ModelCheckpoint(config.Constants.MODEL_CHECKPOINT_FILE, monitor='val_accuracy', verbose=1,
+        checkpoint = ModelCheckpoint(Constants.MODEL_CHECKPOINT_FILE, monitor='val_accuracy', verbose=1,
                                      save_weights_only=True, save_best_only=True, mode='max')
         callbacks_list = [checkpoint]
         # train the model
@@ -65,8 +63,9 @@ class SequentialModel:
                            verbose=2,
                            validation_data=(X_test, y_test))
 
-        # and do the prediction
+        # and do the prediction for 2018
         y_predict = np.round(model.predict(X_test), 0)
+        # prediction for 2030
         y_future_predict = np.round(model.predict(X_predict), 0)
         # do the metrics
         self._create_model_metrics(y_test, y_predict, model, X_test)
@@ -90,7 +89,7 @@ class SequentialModel:
         :param train_data_set:
         :param test_data_set:
         :param predict_data_set:
-        :param normalize:
+        :param normalize: boolean
         :return:
         """
         scaler = StandardScaler()
@@ -137,6 +136,7 @@ class SequentialModel:
     @staticmethod
     def _create_model_metrics(y_test, y_predict, model, X_test):
         """
+        Just print some metrics on the console
          https://muthu.co/understanding-the-classification-report-in-sklearn/
         :param y_test:
         :param y_predict:
@@ -165,8 +165,8 @@ class SequentialModel:
         plt.ylabel('Loss')
         plt.xlabel('Epoch')
         plt.legend(['Train', 'Val'], loc='upper right')
-        file_utils.FileUtils().delete_file(config.Constants().ML_RESULTS_DIR + 'val_loss.png')
-        plt.savefig(config.Constants().ML_RESULTS_DIR + 'val_loss.png')
+        FileUtils.delete_file(Constants.ML_RESULTS_DIR + 'val_loss.png')
+        plt.savefig(Constants.ML_RESULTS_DIR + 'val_loss.png')
         plt.show()
 
     @staticmethod
@@ -182,6 +182,6 @@ class SequentialModel:
         plt.ylabel('accuracy')
         plt.xlabel('Epoch')
         plt.legend(['Train', 'Val'], loc='upper right')
-        file_utils.FileUtils().delete_file(config.Constants().ML_RESULTS_DIR + 'val_accuracy.png')
-        plt.savefig(config.Constants().ML_RESULTS_DIR + 'val_accuracy.png')
+        FileUtils.delete_file(Constants.ML_RESULTS_DIR + 'val_accuracy.png')
+        plt.savefig(Constants.ML_RESULTS_DIR + 'val_accuracy.png')
         plt.show()

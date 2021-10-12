@@ -88,15 +88,16 @@ class Translate:
         counter = 0
         max_f = len(raster_arr1_c2)
 
-        for y in range(len(raster_arr1_c2)):
+        for y in range(len(raster_arr1_c1)):
             counter = counter + 1
             prog_bar.progress(counter, max_f, 'Converting spatial data to tabular: ', 'Progress:')
-            for x in range(len(raster_arr1_c2[y])):
+            for x in range(len(raster_arr1_c1[y])):
                 if raster_arr1_c2[y][x] != -9999 and raster_arr2_c2[y][x] != -9999 and raster_arr3_c2[y][x] != -9999 and \
                         raster_arr4_c2[y][x] != -9999 \
                         and raster_arr1_c1[y][x] != 0 and raster_arr1_c1[y][x] != 0 and raster_arr3_c1[y][x] != 0:
                     # get the coords
                     geopoint = RasterUtils.geocoords_from_pix(geotrans, x, y)
+                    print('geopoint', geopoint)
                     # get the distance to closest road. Use the spatial index @road_net_rtree to speed up things
                     dist_road_net = VectorUtils.get_distance_to_nearest_rtree(
                         geopoint[0],
@@ -143,6 +144,7 @@ class Translate:
                     count_definitions = [1, 2, 3, 4, 5, 6, 7, 8]
                     count_vals1 = []
                     neigh_vals1 = RasterUtils.get_neighbor_values(raster_arr1_c1, [y, x], 1)
+                    neigh_vals_ = RasterUtils.neighbors(raster_arr1_c1, 1, y, x)
                     count_vals2 = []
                     neigh_vals2 = RasterUtils.get_neighbor_values(raster_arr2_c1, [y, x], 1)
                     count_vals3 = []

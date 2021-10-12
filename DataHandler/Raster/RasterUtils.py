@@ -1,6 +1,7 @@
 import gdal
 import ogr
 import numpy as np
+import scipy
 
 
 class RasterUtils:
@@ -75,6 +76,27 @@ class RasterUtils:
         py = int((my - gt[3]) / gt[5])  # y pixel
         return rb.ReadAsArray(px, py, 1, 1)[0][0]
 
+    # @staticmethod
+    # def neighbors(rast, radius, rowNumber, columnNumber):
+    #     ret_array = [[rast[i][j] if i >= 0 and i < len(rast) and j >= 0 and j < len(rast[0]) else 0
+    #              for j in range(columnNumber - 1 - radius, columnNumber + radius)]
+    #             for i in range(rowNumber - 1 - radius, rowNumber + radius)]
+    #     print('ret_array2=====',ret_array)
+
+    @staticmethod
+    def neighbors(rast, radius, row, col):
+        matrix = scipy.array(rast)
+        indices = tuple(scipy.transpose(scipy.atleast_2d([row,col])))
+        arr_shape = scipy.shape(matrix)
+        dist = scipy.ones(arr_shape)
+        dist[indices] = 0
+        dist = scipy.ndimage.distance_transform_cdt(dist, metric='chessboard')
+        nb_indices = scipy.transpose(scipy.nonzero(dist == 1))
+        nb_indices = scipy.transpose(scipy.nonzero(dist == 2))
+        ret_array = list(map(int, [matrix[tuple(ind)] for ind in nb_indices]))
+        print('ret_array2=====', list(map(int, ret_array)))
+        return [matrix[tuple(ind)] for ind in nb_indices]
+
     @staticmethod
     def get_neighbor_values(raster_arr, position, radius):
         """
@@ -96,9 +118,12 @@ class RasterUtils:
                     position[0] - radius:position[0] + (radius + 1),
                     position[1] - radius:position[1] + (radius + 1)
                     ].astype(int).flatten()
+
         if len(ret_array) == 0:
+            print('ret_array1=====', [0])
             return [0]
         else:
+            print('ret_array1=====', list(np.delete(ret_array, len(ret_array) // 2)))
             return list(np.delete(ret_array, len(ret_array) // 2))
 
     @staticmethod

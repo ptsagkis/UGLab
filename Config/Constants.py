@@ -1,11 +1,13 @@
 class Constants:
+
+
     # generic app config
     # PYTHON_LOC = 'C:\\Users\\Acer\\AppData\\Local\\Programs\\Python\\Python37\\python.exe'
     # GDAL_CALC_SCRIPT_LOC = 'C:\\Users\\Acer\\AppData\\Local\\Programs\\Python\\Python37\\Scripts\\gdal_calc.py'
     # GDAL_SCRIPTS_PATH = 'C:\\Users\\Acer\\AppData\\Local\\Programs\\Python\\Python37\\Scripts'
     # PYTHON_LOC = 'C:\\Users\\Acer\\AppData\\Local\\Programs\\Python\\Python37\\python.exe'
     # GDAL_CALC_SCRIPT_LOC = 'C:\\Users\\Acer\\AppData\\Local\\Programs\\Python\\Python37\\Scripts\\gdal_calc.py'
-    PROJECT_PATH = 'C:\\PHD\\UGLab_athens\\'
+    PROJECT_PATH = ''
     # this is where source data exist
     SOURCE_DATA_PATH = 'E:\\backup_files\\PHD_\\data\\'
     SOURCE_CORINE_FILES = [
@@ -64,42 +66,42 @@ class Constants:
     ####################################################################################
     # CORINE Dataset
     OUTPUT_RECLASS_RASTER_CORINE_STEPS_CODE_1 = [
-        PROJECT_PATH + 'CORINE_2000_c1.tif',
-        PROJECT_PATH + 'CORINE_2006_c1.tif',
-        PROJECT_PATH + 'CORINE_2012_c1.tif',
-        PROJECT_PATH + 'CORINE_2018_c1.tif'
+        'corine_2000_c1.tif',
+        'corine_2006_c1.tif',
+        'corine_2012_c1.tif',
+        'corine_2018_c1.tif'
     ]
     OUTPUT_RECLASS_RASTER_CORINE_STEPS_CODE_2 = [
-        PROJECT_PATH + 'CORINE_2000_c2.tif',
-        PROJECT_PATH + 'CORINE_2006_c2.tif',
-        PROJECT_PATH + 'CORINE_2012_c2.tif',
-        PROJECT_PATH + 'CORINE_2018_c2.tif'
+        'corine_2000_c2.tif',
+        'corine_2006_c2.tif',
+        'corine_2012_c2.tif',
+        'corine_2018_c2.tif'
     ]
     # DEM utils
-    OUTPUT_DEM_CROPPED = PROJECT_PATH + 'DEM.TIF'
-    OUTPUT_HILLSHADE = PROJECT_PATH + 'DEM_hillshade.TIF'
-    OUTPUT_SLOPE = PROJECT_PATH + 'DEM_slope.TIF'
-    OUTPUT_ASPECT = PROJECT_PATH + 'DEM_aspect.TIF'
+    OUTPUT_DEM_CROPPED = 'DEM.TIF'
+    OUTPUT_HILLSHADE = 'DEM_hillshade.TIF'
+    OUTPUT_SLOPE = 'DEM_slope.TIF'
+    OUTPUT_ASPECT = 'DEM_aspect.TIF'
 
     # GEOSTATS POP CHANGES
     INPUT_POPS_SHP_2006 = SOURCE_DATA_PATH + 'Grid_ETRS89_LAEA_1K_ref_GEOSTAT_2006.shp'
     INPUT_POPS_SHP_2011 = SOURCE_DATA_PATH + 'Grid_ETRS89_LAEA_1K-ref_GEOSTAT_POP_2011_V2_0_1.shp'
     INPUT_POPS_CSV_2006 = SOURCE_DATA_PATH + 'GEOSTAT_grid_EU_POP_2006_1K_V1_1_1.csv'
     INPUT_POPS_CSV_2011 = SOURCE_DATA_PATH + 'GEOSTAT_grid_POP_1K_2011_V2_0_1.csv'
-    OUTPUT_POP_2006 = PROJECT_PATH + 'POP_2006_GRID.shp'
-    OUTPUT_POP_2011 = PROJECT_PATH + 'POP_2011_GRID.shp'
-    OUTPUT_POP_CHANGES = PROJECT_PATH + 'POP_GRID_FINAL.shp'
+    OUTPUT_POP_2006 = 'POP_2006_GRID.shp'
+    OUTPUT_POP_2011 = 'POP_2011_GRID.shp'
+    OUTPUT_POP_CHANGES = 'POP_GRID_FINAL.shp'
     OUTPUT_POP_CHANGES_FIELD = 'POP_CHANGE'
     INPUT_GRID_CSV_2006_FIELD = 'GRD_INSPIR'
     INPUT_GRID_CSV_2011_FIELD = 'GRD_ID'
 
     # OSM DATA
-    STREET_NETWORK = PROJECT_PATH + 'STREETS_NET.shp'
-    SUB_CENTERS = PROJECT_PATH + 'SUB_CENTERS.shp'
+    STREET_NETWORK = 'STREETS_NET.shp'
+    SUB_CENTERS = 'SUB_CENTERS.shp'
 
     # COASTLINE
     INPUT_COASTLINE = SOURCE_DATA_PATH + 'EUHYDRO_Coastline_EEA39_v013_3857.shp'
-    OUTPUT_COASTLINE = PROJECT_PATH + 'COASTLINE.shp'
+    OUTPUT_COASTLINE = 'COASTLINE.shp'
 
     # ANALYSIS RESULTS - CHANGES AMONG STEPS
     OUTPUT_CHANGES_MATRIX_C1_STEP_1_2 = PROJECT_PATH + 'changes_matrix_c1_1_2.csv'
@@ -108,10 +110,10 @@ class Constants:
     OUTPUT_CHANGES_MATRIX_C2_STEP_2_3 = PROJECT_PATH + 'changes_matrix_c2_2_3.csv'
 
     # DATA SCIENCE - MACHINE LEARNING DATA TRANSLATOR CORINE
-    OUTPUT_CORINE_ML_DATA1 = PROJECT_PATH + 'corine_mldata1.csv'
-    OUTPUT_CORINE_ML_DATA2 = PROJECT_PATH + 'corine_mldata2.csv'
-    OUTPUT_CORINE_ML_DATA3 = PROJECT_PATH + 'corine_mldata3.csv'
+    OUTPUT_CORINE_ML_DATA1 = 'corine_mldata1.csv'
+    OUTPUT_CORINE_ML_DATA2 = 'corine_mldata2.csv'
+    OUTPUT_CORINE_ML_DATA3 = 'corine_mldata3.csv'
 
     # MODEL OUTPUTS CORINE
-    OUTPUT_PREDICTION_CORINE_CSV1 = PROJECT_PATH + 'ml_data\\predict1_corine.csv'
-    OUTPUT_PREDICTION_CORINE_CSV2 = PROJECT_PATH + 'ml_data\\predict2_corine.csv'
+    OUTPUT_PREDICTION_CORINE_CSV1 = 'ml_data\\predict1_corine.csv'
+    OUTPUT_PREDICTION_CORINE_CSV2 = 'ml_data\\predict2_corine.csv'

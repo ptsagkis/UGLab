@@ -3,6 +3,7 @@ from ChainJobs.CorineJob import CorineJob
 from ChainJobs.DemJob import DemJob
 from ChainJobs.GeoStatsJob import GeoStatsJob
 from ChainJobs.MlDataTranslateJob import MlDataTranslateJob
+from ChainJobs.ModelJob import ModelJob
 from ChainJobs.OsmJob import OsmJob
 from Config.Constants import Constants
 
@@ -39,9 +40,13 @@ def run_athens_demo():
     # CoastLineJob(PROJECT_SHAPE_MBR_ATHENS).execute()
     # print('\n finish coastline job')
 
-    print('start MlDataTranslateJob job' + Constants.PROJECT_PATH)
-    MlDataTranslateJob(PROJECT_SHAPE_MBR_ATHENS).execute()
-    print('\n finish MlDataTranslateJob job')
+    # print('start MlDataTranslateJob job')
+    # MlDataTranslateJob().execute()
+    # print('\n finish MlDataTranslateJob job')
+
+    print('start running model job')
+    ModelJob(300, 300).execute()
+    print('\n finish running model job')
 
 
 run_athens_demo()
