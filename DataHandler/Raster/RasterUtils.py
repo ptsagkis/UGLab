@@ -2,6 +2,7 @@ import gdal
 import ogr
 import numpy as np
 import scipy
+from Services.FileUtils import FileUtils
 
 
 class RasterUtils:
@@ -76,29 +77,9 @@ class RasterUtils:
         py = int((my - gt[3]) / gt[5])  # y pixel
         return rb.ReadAsArray(px, py, 1, 1)[0][0]
 
-    # @staticmethod
-    # def neighbors(rast, radius, rowNumber, columnNumber):
-    #     ret_array = [[rast[i][j] if i >= 0 and i < len(rast) and j >= 0 and j < len(rast[0]) else 0
-    #              for j in range(columnNumber - 1 - radius, columnNumber + radius)]
-    #             for i in range(rowNumber - 1 - radius, rowNumber + radius)]
-    #     print('ret_array2=====',ret_array)
 
     @staticmethod
-    def neighbors(rast, radius, row, col):
-        matrix = scipy.array(rast)
-        indices = tuple(scipy.transpose(scipy.atleast_2d([row,col])))
-        arr_shape = scipy.shape(matrix)
-        dist = scipy.ones(arr_shape)
-        dist[indices] = 0
-        dist = scipy.ndimage.distance_transform_cdt(dist, metric='chessboard')
-        nb_indices = scipy.transpose(scipy.nonzero(dist == 1))
-        nb_indices = scipy.transpose(scipy.nonzero(dist == 2))
-        ret_array = list(map(int, [matrix[tuple(ind)] for ind in nb_indices]))
-        print('ret_array2=====', list(map(int, ret_array)))
-        return [matrix[tuple(ind)] for ind in nb_indices]
-
-    @staticmethod
-    def get_neighbor_values(raster_arr, position, radius):
+    def get_neighbors_values(rast, radius, row, col):
         """
         Get the footprint of the supplied pixel position.
         For the case of radius 1
@@ -114,17 +95,17 @@ class RasterUtils:
         etc.
         :return:
         """
-        ret_array = raster_arr[
-                    position[0] - radius:position[0] + (radius + 1),
-                    position[1] - radius:position[1] + (radius + 1)
-                    ].astype(int).flatten()
+        matrix = scipy.array(rast)
+        indices = tuple(scipy.transpose(scipy.atleast_2d([row,col])))
+        arr_shape = scipy.shape(matrix)
+        dist = scipy.ones(arr_shape)
+        dist[indices] = 0
+        dist = scipy.ndimage.distance_transform_cdt(dist, metric='chessboard')
+        nb_indices = []
+        for level in range(radius):
+            nb_indices.extend(scipy.transpose(scipy.nonzero(dist == level+1)))
+        return list(map(int, [matrix[tuple(ind)] for ind in nb_indices]))
 
-        if len(ret_array) == 0:
-            print('ret_array1=====', [0])
-            return [0]
-        else:
-            print('ret_array1=====', list(np.delete(ret_array, len(ret_array) // 2)))
-            return list(np.delete(ret_array, len(ret_array) // 2))
 
     @staticmethod
     def count_value_on_matrix(matrix, value):
@@ -162,6 +143,59 @@ class RasterUtils:
         warp = gdal.Warp(out_raster, in_raster, cutlineDSName=cutline_shape, cropToCutline=True,
                          dstSRS='EPSG:' + epsg_code)
         warp = None  # Closes the files
+
+    @staticmethod
+    def create_raster_from_csv(csvinput, dataIndex, rasterIn, rastOut):
+        modelData = np.loadtxt(csvinput, delimiter=';')
+        x_coords = modelData[:, 0]
+        y_coords = modelData[:, 1]
+        predictVals = modelData[:, dataIndex]
+
+        dataset = gdal.Open(rasterIn)
+        band = dataset.GetRasterBand(1)
+        rasterArr = band.ReadAsArray()
+
+        countU = 0
+        countD = 0
+
+        for i in range(len(x_coords)):
+            point = x_coords[i], y_coords[i]
+            x_index = RasterUtils.get_index_coord_from_geocoords(rasterIn, point)[1]
+            y_index = RasterUtils.get_index_coord_from_geocoords(rasterIn, point)[0]
+            if rasterArr[x_index, y_index] == 0 and predictVals[i] == 1:
+                rasterArr[x_index, y_index] = 2
+                countU = countU + 1
+
+            elif rasterArr[x_index, y_index] == 1 and predictVals[i] == 0:
+                rasterArr[x_index, y_index] = 3
+                countD = countD + 1
+
+        driver = gdal.GetDriverByName('GTiff')
+        dst_filename = rastOut
+        FileUtils.delete_file(dst_filename)
+        dst_ds = driver.Create(dst_filename, band.XSize, band.YSize, 1, gdal.GDT_Float64)
+
+        dst_ds.SetGeoTransform(dataset.GetGeoTransform())
+        dst_ds.SetProjection(dataset.GetProjectionRef())
+        dst_ds.GetRasterBand(1).WriteArray(rasterArr)
+
+    @staticmethod
+    def get_index_coord_from_geocoords(rasterIn, point):
+        '''
+
+        :param rasterIn:
+        :param point:
+        :return:
+        '''
+        dataset = gdal.Open(rasterIn)
+        gt = dataset.GetGeoTransform()
+        rb = dataset.GetRasterBand(1)
+        mx, my = point[0], point[1]  # coord in map units
+        # Convert from map to pixel coordinates.
+        # Only works for geotransforms with no rotation.
+        px = int((mx - gt[0]) / gt[1])  # x pixel
+        py = int((my - gt[3]) / gt[5])  # y pixel
+        return px, py
 
     @staticmethod
     def raster_changes_matrix(rast1, rast2, output_csv):

@@ -11,7 +11,8 @@ class FeaturesImpact:
     couple of methods to support the representation of feature's impact
     """
 
-    def __init__(self):
+    def __init__(self, project_path):
+        self.project_path = project_path
         self.plot_labels = [
             'road_net',
             'city_dist',
@@ -50,8 +51,8 @@ class FeaturesImpact:
         xticks([*range(0, 16, 1)],
                self.plot_labels,
                rotation=45)  # Set text labels and properties.
-        FileUtils.delete_file(Constants.ML_RESULTS_DIR + 'FEATURE_IMPACT_LR.png')
-        pyplot.savefig(Constants.ML_RESULTS_DIR + 'FEATURE_IMPACT_LR.png')
+        FileUtils.delete_file(self.project_path + Constants.ML_RESULTS_DIR + 'FEATURE_IMPACT_LR.png')
+        pyplot.savefig(self.project_path + Constants.ML_RESULTS_DIR + 'FEATURE_IMPACT_LR.png')
         pyplot.show()
 
     def printImportanceRF(self, X_train, y_train):
@@ -73,6 +74,6 @@ class FeaturesImpact:
         xticks([*range(0, 16, 1)],
                self.plot_labels,
                rotation=45)  # Set text labels and properties.
-        FileUtils.delete_file(Constants.ML_RESULTS_DIR + 'FEATURE_IMPACT_RF.png')
-        pyplot.savefig(Constants.ML_RESULTS_DIR + 'FEATURE_IMPACT_RF.png')
+        FileUtils.delete_file(self.project_path + Constants.ML_RESULTS_DIR + 'FEATURE_IMPACT_RF.png')
+        pyplot.savefig(self.project_path + Constants.ML_RESULTS_DIR + 'FEATURE_IMPACT_RF.png')
         pyplot.show()

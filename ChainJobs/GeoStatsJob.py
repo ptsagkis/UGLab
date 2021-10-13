@@ -28,7 +28,7 @@ class GeoStatsJob:
             False
         )
 
-        Geostats().create_pop_grid_changes(
+        Geostats(self.PROJECT_PATH).create_pop_grid_changes(
             self.PROJECT_PATH + Constants.OUTPUT_POP_CHANGES,
             Constants.INPUT_GRID_CSV_2006_FIELD,
             Constants.INPUT_GRID_CSV_2011_FIELD,

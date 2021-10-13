@@ -18,7 +18,8 @@ class SequentialModel:
      A class to support model execution procedure
     """
 
-    def __init__(self, epochs=300, batch_size=500):
+    def __init__(self, project_path, epochs=300, batch_size=500):
+        self.project_path = project_path
         self.epochs = epochs
         self.batch_size = batch_size
 
@@ -34,7 +35,7 @@ class SequentialModel:
         :return: void
         """
         # create the folder to hold ml data
-        FileUtils.create_dir(Constants.PROJECT_PATH + '\\ml_data')
+        FileUtils.create_dir(self.project_path + '\\ml_data')
 
         # load the train dataset
         train_data_set = np.loadtxt(train_data_csv, delimiter=';')
@@ -46,13 +47,13 @@ class SequentialModel:
             train_data_set, test_data_set, predict_data_set, normalize
         )
         # draw feature impact to a plot
-        feats_impact = FeaturesImpact()
+        feats_impact = FeaturesImpact(self.project_path)
         feats_impact.printImportanceLR(X, y)
         feats_impact.printImportanceRF(X, y)
         # get the number of columns out of the first sample
         model = self._create_model(len(X[0]))
 
-        checkpoint = ModelCheckpoint(Constants.MODEL_CHECKPOINT_FILE, monitor='val_accuracy', verbose=1,
+        checkpoint = ModelCheckpoint(self.project_path + Constants.MODEL_CHECKPOINT_FILE, monitor='val_accuracy', verbose=1,
                                      save_weights_only=True, save_best_only=True, mode='max')
         callbacks_list = [checkpoint]
         # train the model
@@ -77,8 +78,8 @@ class SequentialModel:
                                     decimals=2),
                        fmt='%.2f',
                        delimiter=';')
-        self._print_data_loss_plot(hist_2)
-        self._print_data_accuracy_plot(hist_2)
+        self._print_data_loss_plot(hist_2, self.project_path)
+        self._print_data_accuracy_plot(hist_2, self.project_path)
 
     @staticmethod
     def _normalize_data(train_data_set, test_data_set, predict_data_set, normalize):
@@ -153,7 +154,7 @@ class SequentialModel:
         print("classification_report", classification_report(y_test, y_predict))
 
     @staticmethod
-    def _print_data_loss_plot(hist):
+    def _print_data_loss_plot(hist, project_path):
         """
         Save and show the data loss plot
         :param hist:
@@ -165,12 +166,12 @@ class SequentialModel:
         plt.ylabel('Loss')
         plt.xlabel('Epoch')
         plt.legend(['Train', 'Val'], loc='upper right')
-        FileUtils.delete_file(Constants.ML_RESULTS_DIR + 'val_loss.png')
-        plt.savefig(Constants.ML_RESULTS_DIR + 'val_loss.png')
+        FileUtils.delete_file(project_path + Constants.ML_RESULTS_DIR + 'val_loss.png')
+        plt.savefig(project_path + Constants.ML_RESULTS_DIR + 'val_loss.png')
         plt.show()
 
     @staticmethod
-    def _print_data_accuracy_plot(hist):
+    def _print_data_accuracy_plot(hist, project_path):
         """
         Save and show the data accuracy plot
         :param hist:
@@ -182,6 +183,6 @@ class SequentialModel:
         plt.ylabel('accuracy')
         plt.xlabel('Epoch')
         plt.legend(['Train', 'Val'], loc='upper right')
-        FileUtils.delete_file(Constants.ML_RESULTS_DIR + 'val_accuracy.png')
-        plt.savefig(Constants.ML_RESULTS_DIR + 'val_accuracy.png')
+        FileUtils.delete_file(project_path + Constants.ML_RESULTS_DIR + 'val_accuracy.png')
+        plt.savefig(project_path + Constants.ML_RESULTS_DIR + 'val_accuracy.png')
         plt.show()

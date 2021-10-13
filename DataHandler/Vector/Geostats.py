@@ -17,9 +17,9 @@ class Geostats:
     GEOSTAT_grid_POP_1K_2011_V2_0_1.csv
     """
 
-    def __init__(self):
-        self.shape1 = Constants.OUTPUT_POP_2006
-        self.shape2 = Constants.OUTPUT_POP_2011
+    def __init__(self, project_path):
+        self.shape1 = project_path + Constants.OUTPUT_POP_2006
+        self.shape2 = project_path + Constants.OUTPUT_POP_2011
 
     def create_pop_grid_changes(self, shape_out, field1, field2, input_csv1, input_csv2):
         """

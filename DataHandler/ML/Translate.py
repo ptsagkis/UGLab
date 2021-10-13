@@ -97,7 +97,6 @@ class Translate:
                         and raster_arr1_c1[y][x] != 0 and raster_arr1_c1[y][x] != 0 and raster_arr3_c1[y][x] != 0:
                     # get the coords
                     geopoint = RasterUtils.geocoords_from_pix(geotrans, x, y)
-                    print('geopoint', geopoint)
                     # get the distance to closest road. Use the spatial index @road_net_rtree to speed up things
                     dist_road_net = VectorUtils.get_distance_to_nearest_rtree(
                         geopoint[0],
@@ -143,14 +142,13 @@ class Translate:
                     # surrounding environment in terms of land use
                     count_definitions = [1, 2, 3, 4, 5, 6, 7, 8]
                     count_vals1 = []
-                    neigh_vals1 = RasterUtils.get_neighbor_values(raster_arr1_c1, [y, x], 1)
-                    neigh_vals_ = RasterUtils.neighbors(raster_arr1_c1, 1, y, x)
+                    neigh_vals1 = RasterUtils.get_neighbors_values(raster_arr1_c1, 2, y, x)
                     count_vals2 = []
-                    neigh_vals2 = RasterUtils.get_neighbor_values(raster_arr2_c1, [y, x], 1)
+                    neigh_vals2 = RasterUtils.get_neighbors_values(raster_arr2_c1, 2, y, x)
                     count_vals3 = []
-                    neigh_vals3 = RasterUtils.get_neighbor_values(raster_arr3_c1, [y, x], 1)
+                    neigh_vals3 = RasterUtils.get_neighbors_values(raster_arr3_c1, 2, y, x)
                     count_vals4 = []
-                    neigh_vals4 = RasterUtils.get_neighbor_values(raster_arr4_c1, [y, x], 1)
+                    neigh_vals4 = RasterUtils.get_neighbors_values(raster_arr4_c1, 2, y, x)
 
                     for val in count_definitions:
                         count_val1 = RasterUtils.count_value_on_matrix(neigh_vals1, val)

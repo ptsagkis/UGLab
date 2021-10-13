@@ -13,5 +13,5 @@ class CoastLineJob:
             Constants.INPUT_COASTLINE,
             self.PROJECT_PATH + Constants.OUTPUT_COASTLINE,
             self.PROJECT_SHAPE_MBR,  # file to get the mbr from
-            True
+            False
         )
