@@ -1,4 +1,8 @@
 # UGLab
 Urban Growth Lab
 
-This is a python project to execute urban growth simulations
+UGLab is a python set of scripts organised in an object oriented manner.
+
+
+
+........ more information soon.
