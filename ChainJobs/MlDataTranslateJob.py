@@ -5,6 +5,7 @@ from DataHandler.ML.Translate import Translate
 class MlDataTranslateJob:
     """
     Finally translate all the spatial data to tabular data
+
     """
 
     def __init__(self, project_path):

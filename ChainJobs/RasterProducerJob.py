@@ -4,6 +4,9 @@ from Config.Constants import Constants
 
 
 class RasterProducerJob:
+    """
+    From the generated tabular data create respective raster files
+    """
 
     def __init__(self, project_path):
         self.PROJECT_PATH = project_path

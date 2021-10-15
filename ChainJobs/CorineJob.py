@@ -7,11 +7,12 @@ class CorineJob:
     """
     crop corine to study area mbr
     reclass cropped files
+    check @RasterUtils.crop_reproject_raster for further info
     """
 
-    def __init__(self, project_shape_mbr, project_path):
-        self.PROJECT_SHAPE_MBR = project_shape_mbr
+    def __init__(self, project_path, project_shape_mbr):
         self.PROJECT_PATH = project_path
+        self.PROJECT_SHAPE_MBR = project_shape_mbr
 
     def execute(self):
         self.crop_corine(self.PROJECT_PATH, self.PROJECT_SHAPE_MBR)

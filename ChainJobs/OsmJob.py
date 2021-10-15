@@ -7,7 +7,7 @@ from DataHandler.Vector.OsmUtils import OsmUtils
 class OsmJob:
     """
     execute the OSM necessary actions
-    reclass cropped files
+    Generate streets shapefile and urban centers
     """
 
     def __init__(self, project_path, project_shape_mbr):

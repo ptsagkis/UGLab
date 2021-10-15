@@ -4,7 +4,9 @@ from Model.SequentialModel import SequentialModel
 
 class ModelJob:
     """
-    Run the model after all
+    Run the model it self
+    set the number of epochs
+    set the number of batch_size
     """
 
     def __init__(self, project_path, epochs, batch_size):

@@ -5,8 +5,7 @@ from DataHandler.Vector.VectorUtils import VectorUtils
 
 class GeoStatsJob:
     """
-    crop corine to study area mbr
-    reclass cropped files
+    Create the population data datagrid
     """
 
     def __init__(self, project_path, project_shape_mbr):

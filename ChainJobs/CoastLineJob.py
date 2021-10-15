@@ -3,6 +3,10 @@ from DataHandler.Vector.VectorUtils import VectorUtils
 
 
 class CoastLineJob:
+    """
+    Just filter coastlines shapefile features
+    using the study area MBR
+    """
 
     def __init__(self, project_path, project_shape_mbr):
         self.PROJECT_SHAPE_MBR = project_shape_mbr

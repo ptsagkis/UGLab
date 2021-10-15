@@ -7,6 +7,8 @@ from ChainJobs.ModelJob import ModelJob
 from ChainJobs.OsmJob import OsmJob
 from ChainJobs.RasterProducerJob import RasterProducerJob
 from Config.Constants import Constants
+from DataHandler.Raster.RasterUtils import RasterUtils
+from DataHandler.Vector.VectorUtils import VectorUtils
 
 PROJECT_PATH = 'C:\\PHD\\UGLab_hrakleio\\'
 PROJECT_SHAPE_MBR = PROJECT_PATH + 'hrakleio_mbr.shp'
@@ -15,7 +17,7 @@ INPUT_DEM_FILE = Constants.SOURCE_DATA_PATH + 'eu_dem_v11_E50N10.TIF'
 
 def run_demo():
     print('start corine job')
-    CorineJob(PROJECT_SHAPE_MBR, PROJECT_PATH).execute()
+    CorineJob(PROJECT_PATH, PROJECT_SHAPE_MBR).execute()
     print('finish corine job')
 
     print('start DEM job'+PROJECT_PATH)

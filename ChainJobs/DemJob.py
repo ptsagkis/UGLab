@@ -4,6 +4,9 @@ from Config.Constants import Constants
 
 
 class DemJob:
+    """
+    Produce all the DEM products ['dem','slope','hillshade','aspect']
+    """
 
     def __init__(self, input_dem_file, project_shape_mbr, project_path):
         self.PROJECT_SHAPE_MBR = project_shape_mbr
