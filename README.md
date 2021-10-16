@@ -14,8 +14,8 @@ The project has been tested under the following environment.
       setuptools_rust: 0.12.1
 
 
-3. Install GDAL (if you face any problems installing GDAL then try to install [OsGeo](https://www.osgeo.org/projects/osgeo4w/)
-4. Pip install the following libraris
+2. Install GDAL (if you face any problems installing GDAL then try to install [OsGeo](https://www.osgeo.org/projects/osgeo4w/)
+3. Pip install the following libraris
  >#### Keras
  >#### numpy
  >#### gdal
@@ -23,7 +23,7 @@ The project has been tested under the following environment.
  >#### sklearn
  >#### matplotlib
  4. Download the project and extract it locally
- 5. 
+ 5. Run the uglab_demo.py script within the root of the project
 
 
 ## License
