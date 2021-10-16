@@ -1,5 +1,4 @@
-# UGLab
-Urban Growth Lab
+# UGLab - Urban Growth Lab
 
 UGLab is a python open source project capable to execute Urban Growth predictions for any geographic area available on [CORINE](https://land.copernicus.eu/pan-european/corine-land-cover) dataset. 
 
