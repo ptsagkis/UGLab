@@ -3,7 +3,7 @@ class Constants:
 
     # generic app config
     # this is where source data exist
-    SOURCE_DATA_PATH = 'E:\\backup_files\\PHD_\\UGLab_demo_source_data\\sample\\'
+    SOURCE_DATA_PATH = '_uglab_source_demo_data/'
     SOURCE_CORINE_FILES = [
         SOURCE_DATA_PATH + 'U2006_CLC2000_V2020_20u1.tif',
         SOURCE_DATA_PATH + 'U2012_CLC2006_V2020_20u1.tif',
@@ -11,8 +11,8 @@ class Constants:
         SOURCE_DATA_PATH + 'U2018_CLC2018_V2020_20u1.tif'
     ]
     PROJECT_EPSG = '3857'
-    ML_RESULTS_DIR = 'ml_data\\'
-    MODEL_CHECKPOINT_FILE = 'ml_data\\weights_corine.hdf5'
+    ML_RESULTS_DIR = 'ml_data/'
+    MODEL_CHECKPOINT_FILE = 'ml_data/weights_corine.hdf5'
 
 
     ####################################################################################

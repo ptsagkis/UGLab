@@ -25,7 +25,7 @@ class FeaturesImpact:
             '1', '2', '3', '4', '5', '6', '7', '8'
         ]
 
-    def printImportanceLR(self, X_train, y_train):
+    def printImportanceLR(self, X_train, y_train, show=False):
         """
         Set the solver. @default: 'lbfgs'
         ‘newton-cg’ - [‘l2’, ‘none’]
@@ -53,9 +53,10 @@ class FeaturesImpact:
                rotation=45)  # Set text labels and properties.
         FileUtils.delete_file(self.project_path + Constants.ML_RESULTS_DIR + 'FEATURE_IMPACT_LR.png')
         pyplot.savefig(self.project_path + Constants.ML_RESULTS_DIR + 'FEATURE_IMPACT_LR.png')
-        pyplot.show()
+        if show:
+            pyplot.show()
 
-    def printImportanceRF(self, X_train, y_train):
+    def printImportanceRF(self, X_train, y_train, show=False):
         model = RandomForestRegressor()
         # fit the model
         model.fit(X_train, y_train)
@@ -76,4 +77,5 @@ class FeaturesImpact:
                rotation=45)  # Set text labels and properties.
         FileUtils.delete_file(self.project_path + Constants.ML_RESULTS_DIR + 'FEATURE_IMPACT_RF.png')
         pyplot.savefig(self.project_path + Constants.ML_RESULTS_DIR + 'FEATURE_IMPACT_RF.png')
-        pyplot.show()
+        if show:
+            pyplot.show()

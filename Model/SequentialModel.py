@@ -48,8 +48,8 @@ class SequentialModel:
         )
         # draw feature impact to a plot
         feats_impact = FeaturesImpact(self.project_path)
-        feats_impact.printImportanceLR(X, y)
-        feats_impact.printImportanceRF(X, y)
+        feats_impact.printImportanceLR(X, y, False)
+        feats_impact.printImportanceRF(X, y, False)
         # get the number of columns out of the first sample
         model = self._create_model(len(X[0]))
 
@@ -154,7 +154,7 @@ class SequentialModel:
         print("classification_report", classification_report(y_test, y_predict))
 
     @staticmethod
-    def _print_data_loss_plot(hist, project_path):
+    def _print_data_loss_plot(hist, project_path, show=False):
         """
         Save and show the data loss plot
         :param hist:
@@ -168,10 +168,11 @@ class SequentialModel:
         plt.legend(['Train', 'Val'], loc='upper right')
         FileUtils.delete_file(project_path + Constants.ML_RESULTS_DIR + 'val_loss.png')
         plt.savefig(project_path + Constants.ML_RESULTS_DIR + 'val_loss.png')
-        plt.show()
+        if show:
+            plt.show()
 
     @staticmethod
-    def _print_data_accuracy_plot(hist, project_path):
+    def _print_data_accuracy_plot(hist, project_path, show=False):
         """
         Save and show the data accuracy plot
         :param hist:
@@ -185,4 +186,5 @@ class SequentialModel:
         plt.legend(['Train', 'Val'], loc='upper right')
         FileUtils.delete_file(project_path + Constants.ML_RESULTS_DIR + 'val_accuracy.png')
         plt.savefig(project_path + Constants.ML_RESULTS_DIR + 'val_accuracy.png')
-        plt.show()
+        if show:
+            plt.show()

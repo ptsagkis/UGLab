@@ -15,8 +15,8 @@ setuptools_rust: 0.12.1
 ```
 
 
-- Install GDAL (if you face any problems installing GDAL then try to install [OsGeo](https://www.osgeo.org/projects/osgeo4w/)
-- Pip install the following libraris
+- Install GDAL. Further info can be fond [here](https://pypi.org/project/GDAL/). (if you face any problems installing GDAL then try to install [OsGeo](https://www.osgeo.org/projects/osgeo4w/))
+- Pip install the following libraries
  >##### keras
  >##### numpy
  >##### gdal
@@ -25,6 +25,22 @@ setuptools_rust: 0.12.1
  >##### matplotlib
 - Download the project and extract it locally
 - Run the uglab_demo.py script within the root of the project
+
+For demonstration purposes we include a subset of the Pan -European datasets needed to run the project.
+This is a demo project for city of Munich, Germany. 
+Related data sources are placed within `_uglab_source_demo_data` folder.
+All generated files will be placed within `_uglab_demo_project` folder.
+Also notice the existence of `MUNICH_MBR.shp` within `_uglab_demo_project` folder, this is the study area for our demo (munich).
+The whole procedure to complete will take from 15 minutes to 1 hour depending on the machine running it. 
+
+After script completion your  `_uglab_demo_project` folder should be fulfilled with the intermediate produced data.
+There should also be a new folder `ml_data` containing the final data, including:
+- 1 plot for the feature impact using the Linear Regression method
+- 1 plot for the feature impact using the Random Forest method
+- 1 plot for Accuracy learning curves
+- 1 plot for Loss learning curves
+- 1 csv file 
+
 
 
 ## License

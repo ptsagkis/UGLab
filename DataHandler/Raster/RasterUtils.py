@@ -155,20 +155,15 @@ class RasterUtils:
         band = dataset.GetRasterBand(1)
         rasterArr = band.ReadAsArray()
 
-        countU = 0
-        countD = 0
-
         for i in range(len(x_coords)):
             point = x_coords[i], y_coords[i]
             x_index = RasterUtils.get_index_coord_from_geocoords(rasterIn, point)[1]
             y_index = RasterUtils.get_index_coord_from_geocoords(rasterIn, point)[0]
             if rasterArr[x_index, y_index] == 0 and predictVals[i] == 1:
                 rasterArr[x_index, y_index] = 2
-                countU = countU + 1
 
             elif rasterArr[x_index, y_index] == 1 and predictVals[i] == 0:
                 rasterArr[x_index, y_index] = 3
-                countD = countD + 1
 
         driver = gdal.GetDriverByName('GTiff')
         dst_filename = rastOut
