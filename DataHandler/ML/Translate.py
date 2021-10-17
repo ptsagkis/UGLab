@@ -15,26 +15,26 @@ class Translate:
     """
     @staticmethod
     def spatial_to_ml(
-                                           filein_step1_c2,
-                                           filein_step1_c1,
-                                           filein_step2_c2,
-                                           filein_step2_c1,
-                                           filein_step3_c2,
-                                           filein_step3_c1,
-                                           filein_step4_c2,
-                                           filein_step4_c1,
-                                           road_net_shp,
-                                           urban_centers_shp,
-                                           coast_line_shp,
-                                           pop_shp,
-                                           pop_shp_field,
-                                           height_dem,
-                                           slope_dem,
-                                           hillshade_dem,
-                                           aspect_dem,
-                                           output_csv1,
-                                           output_csv2,
-                                           output_csv3):
+           filein_step1_c2,
+           filein_step1_c1,
+           filein_step2_c2,
+           filein_step2_c1,
+           filein_step3_c2,
+           filein_step3_c1,
+           filein_step4_c2,
+           filein_step4_c1,
+           road_net_shp,
+           urban_centers_shp,
+           coast_line_shp,
+           pop_shp,
+           pop_shp_field,
+           height_dem,
+           slope_dem,
+           hillshade_dem,
+           aspect_dem,
+           output_csv1,
+           output_csv2,
+           output_csv3):
         """
 
         :param filein_step1_c2: corine reclass code2 2000

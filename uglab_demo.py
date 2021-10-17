@@ -10,39 +10,39 @@ from Config.Constants import Constants
 from DataHandler.Raster.RasterUtils import RasterUtils
 from DataHandler.Vector.VectorUtils import VectorUtils
 
-PROJECT_PATH = 'C:\\PHD\\UGLab_hrakleio\\'
-PROJECT_SHAPE_MBR = PROJECT_PATH + 'hrakleio_mbr.shp'
-INPUT_DEM_FILE = Constants.SOURCE_DATA_PATH + 'eu_dem_v11_E50N10.TIF'
+PROJECT_PATH = 'C:\\PHD\\UGLab_munich\\'
+PROJECT_SHAPE_MBR = PROJECT_PATH + 'MUNICH_MBR.shp'
+INPUT_DEM_FILE = Constants.SOURCE_DATA_PATH + 'eu_dem_v11_E40N20.TIF'
 
 
 def run_demo():
-    print('start corine job')
-    CorineJob(PROJECT_PATH, PROJECT_SHAPE_MBR).execute()
-    print('finish corine job')
-
-    print('start DEM job'+PROJECT_PATH)
-    DemJob(
-        INPUT_DEM_FILE,
-        PROJECT_SHAPE_MBR,
-        PROJECT_PATH
-    ).execute()
-    print('finish DEM job')
-
-    print('start geostats job')
-    GeoStatsJob(PROJECT_PATH, PROJECT_SHAPE_MBR).execute()
-    print('\n finish geostats job')
-
-    print('start osm job' )
-    OsmJob(PROJECT_PATH, PROJECT_SHAPE_MBR).execute()
-    print('\n finish osm job')
-
-    print('start coastline job')
-    CoastLineJob(PROJECT_PATH, PROJECT_SHAPE_MBR).execute()
-    print('\n finish coastline job')
-
-    print('start MlDataTranslateJob job')
-    MlDataTranslateJob(PROJECT_PATH).execute()
-    print('\n finish MlDataTranslateJob job')
+    # print('start corine job')
+    # CorineJob(PROJECT_PATH, PROJECT_SHAPE_MBR).execute()
+    # print('finish corine job')
+    #
+    # print('start DEM job'+PROJECT_PATH)
+    # DemJob(
+    #     INPUT_DEM_FILE,
+    #     PROJECT_SHAPE_MBR,
+    #     PROJECT_PATH
+    # ).execute()
+    # print('finish DEM job')
+    #
+    # print('start geostats job')
+    # GeoStatsJob(PROJECT_PATH, PROJECT_SHAPE_MBR).execute()
+    # print('\n finish geostats job')
+    #
+    # print('start osm job' )
+    # OsmJob(PROJECT_PATH, PROJECT_SHAPE_MBR).execute()
+    # print('\n finish osm job')
+    #
+    # print('start coastline job')
+    # CoastLineJob(PROJECT_PATH, PROJECT_SHAPE_MBR).execute()
+    # print('\n finish coastline job')
+    #
+    # print('start MlDataTranslateJob job')
+    # MlDataTranslateJob(PROJECT_PATH).execute()
+    # print('\n finish MlDataTranslateJob job')
 
     print('start running model job')
     ModelJob(PROJECT_PATH, 300, 500).execute()

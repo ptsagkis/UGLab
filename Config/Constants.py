@@ -3,7 +3,7 @@ class Constants:
 
     # generic app config
     # this is where source data exist
-    SOURCE_DATA_PATH = 'E:\\backup_files\\PHD_\\UGLab_demo_source_data\\'
+    SOURCE_DATA_PATH = 'E:\\backup_files\\PHD_\\UGLab_demo_source_data\\sample\\'
     SOURCE_CORINE_FILES = [
         SOURCE_DATA_PATH + 'U2006_CLC2000_V2020_20u1.tif',
         SOURCE_DATA_PATH + 'U2012_CLC2006_V2020_20u1.tif',
