@@ -29,7 +29,7 @@ setuptools_rust: 0.12.1
 
 ## License
 
-This project is part of my PHD research. The source code is released under the MIT license.  Please let me ([tsagkis@ntua.gr](mailto:tsagkis@ntua.gr)) and my tutor Professor Eythimios Bakogiannis ([xxx@ntua.gr](mailto:xxx@ntua.gr)) know for any progreess or customization you have made and would like to share. 
+This project is part of my PHD research. The source code is released under the MIT license.  Please let me ([tsagkis@mail.ntua.gr](mailto:tsagkis@ntua.gr)) and my tutor Professor Eythimios Bakogiannis ([xxx@mail.ntua.gr](mailto:xxx@ntua.gr)) know for any progreess or customization you have made and would like to share. 
 
 See [LICENSE](LICENSE) file for details.
 
