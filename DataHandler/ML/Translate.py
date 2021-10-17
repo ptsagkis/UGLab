@@ -140,6 +140,7 @@ class Translate:
                         pop_shp_field
                     ))
                     # surrounding environment in terms of land use
+                    # Notice the C1 re classification [1, 2, 3, 4, 5, 6, 7, 8]
                     count_definitions = [1, 2, 3, 4, 5, 6, 7, 8]
                     count_vals1 = []
                     neigh_vals1 = RasterUtils.get_neighbors_values(raster_arr1_c1, 2, y, x)

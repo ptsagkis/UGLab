@@ -44,9 +44,6 @@ class Corine:
         Values to reclass are hardcoded inside filter property
         """
         new_classes = [self.newClasses1, self.newClasses2]
-        # do some check ... just in case
-        if len(self.corineClasses) != len(self.corineClasses):
-            raise Exception('Reclass list should have equal length: {}'.format(len(self.corineClasses)))
         driver = gdal.GetDriverByName('GTiff')
         raster = gdal.Open(file)
         band = raster.GetRasterBand(1)
