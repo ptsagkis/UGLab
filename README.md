@@ -39,7 +39,20 @@ There should also be a new folder `ml_data` containing the final data, including
 - 1 plot for the feature impact using the Random Forest method
 - 1 plot for Accuracy learning curves
 - 1 plot for Loss learning curves
-- 1 csv file 
+- 1 csv file containing x_coord, y_coord, urban/nonurban 2006, urban/nonurban 2018, urban/nonurban 2018 - predicted
+eg.
+```
+2786941.88	4211759.85	0.00	0.00	0.00	0.00
+2800021.84	4211316.97	0.00	1.00	1.00	1.00
+2799278.66	4211021.72	0.00	1.00	0.00	1.00
+................................................
+```
+- 1 geotiff for the year 2018 with real changes
+- 1 geotiff for the year 2018 with predicted changes
+- 1 geotiff for the year 2030 with predicted changes
+
+
+
 
 
 
