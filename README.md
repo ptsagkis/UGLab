@@ -2,6 +2,7 @@
 
 UGLab is a python open source project capable to execute Urban Growth predictions for any geographic area available on [CORINE](https://land.copernicus.eu/pan-european/corine-land-cover) dataset. 
 
+Running the dea
 ## Prerequistics
 - Set up a python 3.7 environment.
 

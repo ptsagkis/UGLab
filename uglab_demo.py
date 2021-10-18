@@ -47,7 +47,7 @@ def run_demo():
     print('\n finish MlDataTranslateJob job')
 
     print('start running model job')
-    ModelJob(PROJECT_PATH, 300, 500).execute()
+    ModelJob(PROJECT_PATH, 200, 500).execute()
     print('\n finish running model job')
 
     print('start running geotif producer job')

@@ -48,8 +48,8 @@ class SequentialModel:
         )
         # draw feature impact to a plot
         feats_impact = FeaturesImpact(self.project_path)
-        feats_impact.printImportanceLR(X, y, False)
-        feats_impact.printImportanceRF(X, y, False)
+        feats_impact.printImportanceLR(X, y, True)
+        feats_impact.printImportanceRF(X, y, True)
         # get the number of columns out of the first sample
         model = self._create_model(len(X[0]))
 
@@ -78,8 +78,8 @@ class SequentialModel:
                                     decimals=2),
                        fmt='%.2f',
                        delimiter=';')
-        self._print_data_loss_plot(hist_2, self.project_path)
-        self._print_data_accuracy_plot(hist_2, self.project_path)
+        self._print_data_loss_plot(hist_2, self.project_path, True)
+        self._print_data_accuracy_plot(hist_2, self.project_path,  True)
 
     @staticmethod
     def _normalize_data(train_data_set, test_data_set, predict_data_set, normalize):
