@@ -58,6 +58,12 @@ eg.
 - 1 geotiff for the year 2018 holding predicted changes
 - 1 geotiff for the year 2030 holding predicted changes
 
+## Running UGLab for your own study area
+
+If you managed to run the demo project then you are ready to run it for own study area.
+
+To do so, you nedd to download the pan European datasets and also create a new shapefile holding a rectangle polygon expressing the mbr of your area.
+You may find detailed instructions about that within our [WIK](Ihttps://github.com/ptsagkis/UGLab/wiki/UGLab---Pan-European-Sources---Open-Data)
 
 ## Citing UGLab
 
