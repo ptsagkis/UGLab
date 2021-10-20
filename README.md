@@ -1,8 +1,7 @@
 # UGLab - Urban Growth Lab
 
 UGLab is a python open source project capable to execute Urban Growth predictions for any geographic area available on [CORINE](https://land.copernicus.eu/pan-european/corine-land-cover) dataset. 
-
-Running the dea
+You may find a detailed description about the flow here--> [flow diagram](https://github.com/ptsagkis/UGLab/wiki/UGLab---Flow-diagram)
 ## Prerequistics
 - Set up a python 3.7 environment.
 
@@ -42,12 +41,17 @@ There should also be a new folder `ml_data` containing the final data, including
 - 1 plot for Loss learning curves
 - 1 csv file containing x_coord, y_coord, urban/nonurban 2006, urban/nonurban 2018, urban/nonurban 2018 - predicted
 eg.
-```
-2786941.88	4211759.85	0.00	0.00	0.00	0.00
-2800021.84	4211316.97	0.00	1.00	1.00	1.00
-2799278.66	4211021.72	0.00	1.00	0.00	1.00
+
+| x_coord    | y_coord    | 2006 real | 2018 real | 2018 predicted | 2030 predicted |
+|------------|------------|-----------|-----------|----------------|----------------|
+| 2414480.54 | 4622802.23 | 0.00      | 0.00      | 0.00           | 0.00           |
+| 2414628.43 | 4622802.23 | 0.00      | 1.00      | 1.00           | 1.00           |
+| 2414776.31 | 4622802.23 | 0.00      | 0.00      | 0.00           | 0.00           |
+| 2414924.19 | 4622802.23 | 1.00      | 1.00      | 1.00           | 1.00           |
+
+
 ................................................
-```
+
 - 1 geotiff for the year 2018 with real changes
 - 1 geotiff for the year 2018 with predicted changes
 - 1 geotiff for the year 2030 with predicted changes
