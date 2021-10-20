@@ -84,7 +84,7 @@ If you managed to run the demo project then you are ready to run it for your own
 
 To do so, you need to download the pan European datasets and also create a new shapefile holding a rectangle expressing the mbr of your area.
 
-You may find detailed instructions about that within our [WIKI](https://github.com/ptsagkis/UGLab/wiki/UGLab---Pan-European-Sources---Open-Data)
+You may find detailed instructions about that within our [WIKI](https://github.com/ptsagkis/UGLab/wiki/Run-UGLab-for-any-EU-area.)
 
 ## Citing UGLab
 
