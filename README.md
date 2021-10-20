@@ -72,7 +72,7 @@ If you use UGLab in your research and want to cite it, please use this reference
 
 ## License
 
-This project is part of my PHD research. The source code is released under the MIT license.  Please let me ([tsagkis@mail.ntua.gr](mailto:tsagkis@ntua.gr)) and my tutor Professor Eythimios Bakogiannis ([xxx@mail.ntua.gr](mailto:xxx@ntua.gr)) know for any progreess or customization you have made and would like to share. 
+This project is part of my PHD research. The source code is released under the MIT license.  Please let me ([tsagkis@mail.ntua.gr](mailto:tsagkis@ntua.gr)) and my tutor Professor Eythimios Bakogiannis ([ebako@mail.ntua.gr ](mailto:xxx@ntua.gr)) know for any progreess or customization you have made and would like to share. 
 
 See [LICENSE](LICENSE) file for details.
 
