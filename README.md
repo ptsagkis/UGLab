@@ -59,6 +59,10 @@ eg.
 - 1 geotiff for the year 2030 holding predicted changes
 
 
+## Citing UGLab
+
+If you use UGLab in your research and want to cite it, please use this reference:
+>##### UGLab websource: https://github.com/ptsagkis/UGLab/wiki
 
 ## License
 
