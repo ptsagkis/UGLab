@@ -58,6 +58,8 @@ eg.
 - 1 geotiff for the year 2018 holding predicted changes
 - 1 geotiff for the year 2030 holding predicted changes
 
+
+
 ## Running UGLab for your own study area
 
 If you managed to run the demo project then you are ready to run it for own study area.
