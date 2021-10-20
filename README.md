@@ -80,9 +80,9 @@ eg.
 
 ## Running UGLab for your own study area
 
-If you managed to run the demo project then you are ready to run it for own study area.
+If you managed to run the demo project then you are ready to run it for your own study area.
 
-To do so, you nedd to download the pan European datasets and also create a new shapefile holding a rectangle polygon expressing the mbr of your area.
+To do so, you need to download the pan European datasets and also create a new shapefile holding a rectangle expressing the mbr of your area.
 
 You may find detailed instructions about that within our [WIKI](https://github.com/ptsagkis/UGLab/wiki/UGLab---Pan-European-Sources---Open-Data)
 
