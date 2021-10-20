@@ -15,7 +15,7 @@ setuptools_rust: 0.12.1
 ```
 
 
-- Install GDAL. Further info can be fond [here](https://pypi.org/project/GDAL/). (if you face any problems installing GDAL then try to install [OsGeo](https://www.osgeo.org/projects/osgeo4w/))
+- Install GDAL. Further info can be found [here](https://pypi.org/project/GDAL/). (if you face any problems installing GDAL then try to install [OsGeo](https://www.osgeo.org/projects/osgeo4w/))
 - Pip install the following libraries
  >##### keras
  >##### numpy
@@ -24,6 +24,8 @@ setuptools_rust: 0.12.1
  >##### sklearn
  >##### matplotlib
 - Download the project and extract it locally
+
+## Run Demo project 
 - Run the uglab_demo.py script within the root of the project
 
 For demonstration purposes we include a subset of the Pan -European datasets needed to run the project.
@@ -31,6 +33,7 @@ This is a demo project for city of Munich, Germany.
 Related data sources are placed within `_uglab_source_demo_data` folder.
 All generated files will be placed within `_uglab_demo_project` folder.
 Also notice the existence of `MUNICH_MBR.shp` within `_uglab_demo_project` folder, this is the study area for our demo (munich).
+
 The whole procedure to complete will take from 15 minutes to 1 hour depending on the machine running it. 
 
 After script completion your  `_uglab_demo_project` folder should be fulfilled with the intermediate produced data.
@@ -49,15 +52,11 @@ eg.
 | 2414776.31 | 4622802.23 | 0.00      | 0.00      | 0.00           | 0.00           |
 | 2414924.19 | 4622802.23 | 1.00      | 1.00      | 1.00           | 1.00           |
 
-
 ................................................
 
-- 1 geotiff for the year 2018 with real changes
-- 1 geotiff for the year 2018 with predicted changes
-- 1 geotiff for the year 2030 with predicted changes
-
-
-
+- 1 geotiff for the year 2018 holding real changes
+- 1 geotiff for the year 2018 holding predicted changes
+- 1 geotiff for the year 2030 holding predicted changes
 
 
 
