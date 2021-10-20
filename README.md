@@ -1,6 +1,9 @@
 # UGLab - Urban Growth Lab
 
 UGLab is a python open source project capable to execute Urban Growth predictions for any geographic area available on [CORINE](https://land.copernicus.eu/pan-european/corine-land-cover) dataset. 
+
+Consult our [wiki pages](Ihttps://github.com/ptsagkis/UGLab/wiki/) for for further info.
+
 You may find a detailed description about the flow here--> [flow diagram](https://github.com/ptsagkis/UGLab/wiki/UGLab---Flow-diagram)
 ## Prerequistics
 - Set up a python 3.7 environment.
@@ -40,8 +43,21 @@ After script completion your  `_uglab_demo_project` folder should be fulfilled w
 There should also be a new folder `ml_data` containing the final data, including:
 - 1 plot for the feature impact using the Linear Regression method
 - 1 plot for the feature impact using the Random Forest method
+
+
+| Feature Impact - Linear Regression  |  Feature Impact - Random Forest |
+:------------------------------------:|:-------------------------------:|
+![](https://raw.githubusercontent.com/ptsagkis/UGLab/master/Docs/FEATURE_IMPACT_LR.png)  |  ![](https://raw.githubusercontent.com/ptsagkis/UGLab/master/Docs/FEATURE_IMPACT_RF.png)  
+
+
 - 1 plot for Accuracy learning curves
 - 1 plot for Loss learning curves
+
+
+| Loss learning curves                |  Accuracy learning curves       |
+:------------------------------------:|:-------------------------------:|
+![](https://raw.githubusercontent.com/ptsagkis/UGLab/master/Docs/val_loss.png)  |  ![](https://raw.githubusercontent.com/ptsagkis/UGLab/master/Docs/val_accuracy.png)  
+
 - 1 csv file containing x_coord, y_coord, urban/nonurban 2006, urban/nonurban 2018, urban/nonurban 2018 - predicted
 eg.
 
@@ -54,18 +70,21 @@ eg.
 
 ................................................
 
-- 1 geotiff for the year 2018 holding real changes
-- 1 geotiff for the year 2018 holding predicted changes
-- 1 geotiff for the year 2030 holding predicted changes
+- 1 geotiff for the period 2006-2018 holding real changes
+- 1 geotiff for the period 2006-2018 holding predicted changes
+- 1 geotiff for the period 2018-2030 holding predicted changes
 
-
+|     2018 REAL                  |  2018 PREDICTED           |    2030 PREDICTED  
+:-------------------------:|:-------------------------:|:-------------------------:
+![](https://raw.githubusercontent.com/ptsagkis/UGLab/master/Docs/2018_real.png)  |  ![](https://raw.githubusercontent.com/ptsagkis/UGLab/master/Docs/2018_predicted.png)  | ![](https://raw.githubusercontent.com/ptsagkis/UGLab/master/Docs/2030_predicted.png)
 
 ## Running UGLab for your own study area
 
 If you managed to run the demo project then you are ready to run it for own study area.
 
 To do so, you nedd to download the pan European datasets and also create a new shapefile holding a rectangle polygon expressing the mbr of your area.
-You may find detailed instructions about that within our [WIK](Ihttps://github.com/ptsagkis/UGLab/wiki/UGLab---Pan-European-Sources---Open-Data)
+
+You may find detailed instructions about that within our [WIKI](https://github.com/ptsagkis/UGLab/wiki/UGLab---Pan-European-Sources---Open-Data)
 
 ## Citing UGLab
 
@@ -78,6 +97,3 @@ This project is part of my PHD research. The source code is released under the M
 
 See [LICENSE](LICENSE) file for details.
 
-
-
-........ more information soon.
