@@ -37,7 +37,7 @@ Related data sources are placed within `_uglab_source_demo_data` folder.
 All generated files will be placed within `_uglab_demo_project` folder.
 Also notice the existence of `MUNICH_MBR.shp` within `_uglab_demo_project` folder, this is the study area for our demo (munich).
 
-The whole procedure to complete will take from 15 minutes to 1 hour depending on the machine running it. 
+The whole procedure to complete will take from 15 minutes to 1 hour depending on the machine running it. Consider, that you should have internet access during the runtime to download OSM data for your study area. 
 
 After script completion your  `_uglab_demo_project` folder should be fulfilled with the intermediate produced data.
 There should also be a new folder `ml_data` containing the final data, including:
