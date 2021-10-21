@@ -5,6 +5,10 @@ import threading
 
 
 class SpinnerThread(threading.Thread):
+    """
+    Just a tiny class to showing a loading signal
+    executed in a separate thread
+    """
 
     def __init__(self):
         super().__init__(target=self._spin)
