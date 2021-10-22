@@ -75,7 +75,7 @@ eg.
 - 1 geotiff for the period 2018-2030 holding predicted changes
 
 |     2018 REAL                  |  2018 PREDICTED           |    2030 PREDICTED  
-:-------------------------:|:-------------------------:|:-------------------------:
+:-------------------------------:|:-------------------------:|:-------------------------:
 ![](https://raw.githubusercontent.com/ptsagkis/UGLab/master/Docs/2018_real.png)  |  ![](https://raw.githubusercontent.com/ptsagkis/UGLab/master/Docs/2018_predicted.png)  | ![](https://raw.githubusercontent.com/ptsagkis/UGLab/master/Docs/2030_predicted.png)
 
 ## Running UGLab for your own study area
