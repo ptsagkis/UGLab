@@ -18,7 +18,7 @@ class Constants:
     ####################################################################################
     #################### DATA PREPARATION RELATED CONFIG ###############################
     #################### DONT MAKE CHANGES THIS POINT FORWARD ##########################
-    ##################### unless you know what you are doing ##########################
+    ##################### unless you know what you are doing ###########################Z
     ####################################################################################
     # CORINE Dataset
     OUTPUT_RECLASS_RASTER_CORINE_STEPS_CODE_1 = [

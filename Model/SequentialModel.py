@@ -56,7 +56,7 @@ class SequentialModel:
         checkpoint = ModelCheckpoint(self.project_path + Constants.MODEL_CHECKPOINT_FILE, monitor='val_accuracy', verbose=1,
                                      save_weights_only=True, save_best_only=True, mode='max')
         callbacks_list = [checkpoint]
-        # train the model
+        # train and validate the model
         hist_2 = model.fit(X, y,
                            callbacks=callbacks_list,
                            epochs=self.epochs,
