@@ -1,6 +1,6 @@
-import ogr
+from osgeo import ogr
 import csv
-import gdal
+from osgeo import gdal
 from DataHandler.Raster.RasterUtils import RasterUtils
 from DataHandler.Vector.VectorUtils import VectorUtils
 from Services.FileUtils import FileUtils

@@ -23,6 +23,8 @@ setuptools_rust: 0.12.1
  >##### keras
  >##### numpy
  >##### gdal
+ >##### ogr
+ >##### tensorflow
  >##### rtree
  >##### sklearn
  >##### matplotlib

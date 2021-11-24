@@ -1,4 +1,5 @@
-import ogr
+from osgeo import ogr
+from osgeo import osr
 import rtree
 import Services.Progress as progress_bar
 from DataHandler.Vector.Reproject import Reproject
@@ -143,7 +144,7 @@ class VectorUtils:
         point = ogr.Geometry(ogr.wkbPoint)
         point.AddPoint(x, y)
         # Create spatial reference
-        out_srs = ogr.osr.SpatialReference()
+        out_srs = osr.SpatialReference()
         out_srs.ImportFromEPSG(3857)
         # Assign to geometry
         point.AssignSpatialReference(out_srs)
@@ -207,7 +208,7 @@ class VectorUtils:
         point = ogr.Geometry(ogr.wkbPoint)
         point.AddPoint(x, y)
         # Create spatial reference
-        out_srs = ogr.osr.SpatialReference()
+        out_srs = osr.SpatialReference()
         out_srs.ImportFromEPSG(3857)
         # Assign to geometry
         point.AssignSpatialReference(out_srs)
@@ -232,6 +233,10 @@ class VectorUtils:
 
     @staticmethod
     def get_features_at_envelope(point, index, featslyr, multiplier=1):
+        '''
+        Filter features at point but this time use the spatial index.
+        It is speeding up the process.
+        '''
         distance = 500.0 * multiplier
         xmin, xmax, ymin, ymax = point.GetEnvelope()
         search_envelope = (xmin - distance, xmax + distance, ymin - distance, ymax + distance)

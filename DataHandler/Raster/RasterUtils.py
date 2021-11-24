@@ -1,4 +1,4 @@
-import gdal
+from osgeo import gdal
 import ogr
 import numpy as np
 import scipy
