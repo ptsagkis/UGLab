@@ -22,7 +22,9 @@ class FeaturesImpact:
             'hillshade',
             'aspect',
             'pop',
-            '1', '2', '3', '4', '5', '6', '7', '8'
+            '1', '2', '3', '4', '5', '6', '7', '8',
+            't-1 class A',
+            't-1 class B',
         ]
 
     def printImportanceLR(self, X_train, y_train, show=False):
@@ -40,17 +42,17 @@ class FeaturesImpact:
         # get importance
         importance = model.coef_[0]
         # remove last two elements
-        importance_m = importance[:len(importance) - 2]
+        importance_m = importance[:len(importance)]
         # print summarize feature importance
         for i, v in enumerate(importance):
             print('Feature: %0d, Score: %.5f' % (i, v))
         # plot feature importance
-        pyplot.bar([x for x in range(len(importance_m))], list(map(abs, importance_m)))
+        pyplot.bar([x for x in range(len(importance_m))], [float(i)/sum(list(map(abs, importance_m))) for i in list(map(abs, importance_m))])
         locs, labels = xticks()
         pyplot.subplots_adjust(bottom=0.2)
-        xticks([*range(0, 16, 1)],
+        xticks([*range(0, 18, 1)],
                self.plot_labels,
-               rotation=45)  # Set text labels and properties.
+               rotation=90)  # Set text labels and properties.
         FileUtils.delete_file(self.project_path + Constants.ML_RESULTS_DIR + 'FEATURE_IMPACT_LR.png')
         pyplot.savefig(self.project_path + Constants.ML_RESULTS_DIR + 'FEATURE_IMPACT_LR.png')
         if show:
@@ -63,7 +65,7 @@ class FeaturesImpact:
         # get importance
         importance = model.feature_importances_
         # remove last two elements
-        importance_m = importance[:len(importance) - 2]
+        importance_m = importance[:len(importance)]
         # summarize feature importance
         for i, v in enumerate(importance):
             print('Feature: %0d, Score: %.5f' % (i, v))
@@ -72,7 +74,7 @@ class FeaturesImpact:
         locs, labels = xticks()
         pyplot.subplots_adjust(bottom=0.2)
 
-        xticks([*range(0, 16, 1)],
+        xticks([*range(0, 18, 1)],
                self.plot_labels,
                rotation=45)  # Set text labels and properties.
         FileUtils.delete_file(self.project_path + Constants.ML_RESULTS_DIR + 'FEATURE_IMPACT_RF.png')
