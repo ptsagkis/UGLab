@@ -91,7 +91,7 @@ You may find detailed instructions about that within our [WIKI](https://github.c
 ## Citing UGLab
 
 If you use UGLab in your research and want to cite it, please use this reference:
->##### UGLab websource: https://github.com/ptsagkis/UGLab/wiki
+>##### Authors:P.Tsagkis, E.Bakogiannis UGLab websource: https://github.com/ptsagkis/UGLab/wiki
 
 ## License
 
