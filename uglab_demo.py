@@ -46,9 +46,13 @@ def run_demo():
     MlDataTranslateJob(PROJECT_PATH).execute()
     print('\n finish MlDataTranslateJob job')
 
-    print('start running model job')
-    ModelJob(PROJECT_PATH, 200, 500).execute()
-    print('\n finish running model job')
+    print('start running sequential model job')
+    ModelJob(PROJECT_PATH, 'seq', 300, 300).execute()
+    print('\n finish running sequential model job')
+
+    print('start running random forest model job')
+    ModelJob(PROJECT_PATH, 'rf').execute()
+    print('\n finish running random forest model job')
 
     print('start running geotif producer job')
     RasterProducerJob(PROJECT_PATH).execute()

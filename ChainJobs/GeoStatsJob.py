@@ -27,6 +27,13 @@ class GeoStatsJob:
             False
         )
 
+        VectorUtils.filter_features_with_shape_extent(
+            Constants.INPUT_POPS_SHP_2018,
+            self.PROJECT_PATH + Constants.OUTPUT_POP_2018,
+            self.PROJECT_SHAPE_MBR,  # file to get the mbr from
+            False
+        )
+
         Geostats(self.PROJECT_PATH).create_pop_grid_changes(
             self.PROJECT_PATH + Constants.OUTPUT_POP_CHANGES,
             Constants.INPUT_GRID_CSV_2006_FIELD,

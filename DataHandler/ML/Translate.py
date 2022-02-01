@@ -27,7 +27,8 @@ class Translate:
            urban_centers_shp,
            coast_line_shp,
            pop_shp,
-           pop_shp_field,
+           pop_shp_field_1,
+           pop_shp_field_2,
            height_dem,
            slope_dem,
            hillshade_dem,
@@ -49,7 +50,8 @@ class Translate:
         :param urban_centers_shp: urban centers shapefile
         :param coast_line_shp: cooast line shapefile
         :param pop_shp: population shapefile
-        :param pop_shp_field: population shapefile field to get trending value
+        :param pop_shp_field_1: population shapefile field to get trending value for 2006 to 2011
+        :param pop_shp_field_2: population shapefile field to get trending value for 2011 to 2018
         :param height_dem: DEM
         :param slope_dem: SLope
         :param hillshade_dem: hillshade
@@ -133,11 +135,17 @@ class Translate:
                         aspect_dem,
                         geopoint
                     )
-                    # population change val
-                    pop_val = float(VectorUtils.get_attribute_value_on_overlap(
+                    # population change val 2006 to 2011
+                    pop_val_1 = float(VectorUtils.get_attribute_value_on_overlap(
                         pop_shp,
                         geopoint,
-                        pop_shp_field
+                        pop_shp_field_1
+                    ))
+                    # population change val 2011 to 2018
+                    pop_val_2 = float(VectorUtils.get_attribute_value_on_overlap(
+                        pop_shp,
+                        geopoint,
+                        pop_shp_field_2
                     ))
                     # surrounding environment in terms of land use
                     # Notice the C1 re classification [1, 2, 3, 4, 5, 6, 7, 8]
@@ -171,7 +179,7 @@ class Translate:
                                     round(int(slope_val)),
                                     round(int(hillshade_val)),
                                     round(int(aspect_val)),
-                                    round(int(pop_val))
+                                    round(int(pop_val_1))
                                 ] + count_vals1 + [raster_arr1_c1[y][x], raster_arr1_c2[y][x],
                                                    int(raster_arr3_c2[y][x])]
 
@@ -185,7 +193,7 @@ class Translate:
                                     round(int(slope_val)),
                                     round(int(hillshade_val)),
                                     round(int(aspect_val)),
-                                    round(int(pop_val))
+                                    round(int(pop_val_2))
                                 ] + count_vals2 + [raster_arr2_c1[y][x], raster_arr2_c2[y][x],
                                                    int(raster_arr4_c2[y][x])]
 
@@ -199,7 +207,7 @@ class Translate:
                                     round(int(slope_val)),
                                     round(int(hillshade_val)),
                                     round(int(aspect_val)),
-                                    round(int(pop_val))
+                                    round(int(pop_val_2))
                                 ] + count_vals3 + [raster_arr4_c1[y][x], raster_arr4_c2[y][x]]
 
                     # Open file in append mode

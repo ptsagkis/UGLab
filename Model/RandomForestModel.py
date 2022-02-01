@@ -1,25 +1,17 @@
 import numpy as np
 import os
 from sklearn.ensemble import RandomForestClassifier
-from sklearn.metrics import accuracy_score
+from sklearn.metrics import accuracy_score, cohen_kappa_score, precision_score, recall_score, f1_score, \
+    classification_report
 from sklearn.preprocessing import StandardScaler
 
 
-
 class RandomForestModel:
-    # RandomForestModel(PROJECT_PATH).run_model(
-    #     PROJECT_PATH + Constants.OUTPUT_CORINE_ML_DATA1,
-    #     PROJECT_PATH + Constants.OUTPUT_CORINE_ML_DATA2,
-    #     PROJECT_PATH + Constants.OUTPUT_CORINE_ML_DATA3,
-    #     PROJECT_PATH + Constants.OUTPUT_PREDICTION_CORINE_CSV1,
-    #     True
-    # )
 
     def __init__(self, project_path):
         self.project_path = project_path
 
-
-    def run_model(self, train_data_csv, test_data_csv, predict_data_csv, output_csv1, normalize=False):
+    def run_model(self, train_data_csv, test_data_csv, predict_data_csv, output_csv, normalize=False):
         # load the train dataset
         trainDataSet = np.loadtxt(train_data_csv, delimiter=';')
         testDataSet = np.loadtxt(test_data_csv, delimiter=';')
@@ -49,11 +41,11 @@ class RandomForestModel:
             'bootstrap': True,
             'class_weight': None,
             'criterion': 'gini',
-            'max_depth' : None,
+            'max_depth': None,
             'max_features': 'auto',
             'max_leaf_nodes': None,
             'min_impurity_decrease': 0.0,
-            'min_impurity_split': None,
+            # 'min_impurity_split': None,
             'min_samples_leaf': 1,
             'min_samples_split': 2,
             'min_weight_fraction_leaf': 0.0,
@@ -73,15 +65,30 @@ class RandomForestModel:
         # prediction for 2030
         y_future_predict = np.round(RF_model.predict(X_predict), 0)
         # do the metrics
-        # self._create_model_metrics(y_test, y_predict, RF_model, X_test)
-        score = accuracy_score(y_test, y_predict)
-        print('score:::::::::',score)
-        if os.path.exists(output_csv1):
-            os.remove(output_csv1)
-        with open(output_csv1, 'ab') as f:
+        self._create_model_metrics(y_test, y_predict, RF_model, X_test)
+
+        if os.path.exists(output_csv):
+            os.remove(output_csv)
+        with open(output_csv, 'ab') as f:
             np.savetxt(f, np.around(np.column_stack((x_coords, y_coords, y_from, y_test, y_predict, y_future_predict)),
                                     decimals=2),
                        fmt='%.2f',
                        delimiter=';')
 
 
+    @staticmethod
+    def _create_model_metrics(y_test, y_predict, model, X_test):
+        """
+        Just print some metrics on the console
+         https://muthu.co/understanding-the-classification-report-in-sklearn/
+        :param y_test:
+        :param y_predict:
+        :return:
+        """
+        score = accuracy_score(y_test, y_predict)
+        print("score: {}".format(score))
+        print("cohen kappa: {}".format(cohen_kappa_score(y_test, y_predict)))
+        print("Precision score: {}".format(precision_score(y_test, y_predict)))
+        print("Recall score: {}".format(recall_score(y_test, y_predict)))
+        print("F1 Score: {}".format(f1_score(y_test, y_predict)))
+        print("classification_report", classification_report(y_test, y_predict))

@@ -18,14 +18,28 @@ class RasterProducerJob:
             self.PROJECT_PATH + Constants.OUTPUT_PREDICTION_CORINE_CSV1,
             5,
             self.PROJECT_PATH + Constants.OUTPUT_RECLASS_RASTER_CORINE_STEPS_CODE_2[3],
-            self.PROJECT_PATH + 'ml_data\\corine_2030_PREDICTED.tif'
+            self.PROJECT_PATH + 'ml_data\\corine_2030_PREDICTED_SEQ.tif'
         )
 
         RasterUtils.create_raster_from_csv(
             self.PROJECT_PATH + Constants.OUTPUT_PREDICTION_CORINE_CSV1,
             4,
             self.PROJECT_PATH + Constants.OUTPUT_RECLASS_RASTER_CORINE_STEPS_CODE_2[1],
-            self.PROJECT_PATH + 'ml_data\\corine_2018_PREDICTED.tif'
+            self.PROJECT_PATH + 'ml_data\\corine_2018_PREDICTED_SEQ.tif'
+        )
+
+        RasterUtils.create_raster_from_csv(
+            self.PROJECT_PATH + Constants.OUTPUT_PREDICTION_CORINE_CSV2,
+            5,
+            self.PROJECT_PATH + Constants.OUTPUT_RECLASS_RASTER_CORINE_STEPS_CODE_2[3],
+            self.PROJECT_PATH + 'ml_data\\corine_2030_PREDICTED_RF.tif'
+        )
+
+        RasterUtils.create_raster_from_csv(
+            self.PROJECT_PATH + Constants.OUTPUT_PREDICTION_CORINE_CSV2,
+            4,
+            self.PROJECT_PATH + Constants.OUTPUT_RECLASS_RASTER_CORINE_STEPS_CODE_2[1],
+            self.PROJECT_PATH + 'ml_data\\corine_2018_PREDICTED_RF.tif'
         )
 
         RasterUtils.create_raster_from_csv(
