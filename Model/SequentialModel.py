@@ -127,7 +127,7 @@ class SequentialModel:
         :return:
         """
         model = Sequential()
-        model.add(Dense(20, input_dim=input_dim, activation='relu'))
+        model.add(Dense(18, input_dim=input_dim, activation='relu'))
         model.add(Dense(80, activation='relu'))
         model.add(Dense(120, activation='relu'))
         model.add(Dense(1, activation='sigmoid'))

@@ -47,7 +47,7 @@ def run_demo():
     print('\n finish MlDataTranslateJob job')
 
     print('start running sequential model job')
-    ModelJob(PROJECT_PATH, 'seq', 300, 300).execute()
+    ModelJob(PROJECT_PATH, 'seq', 200, 1500).execute()
     print('\n finish running sequential model job')
 
     print('start running random forest model job')
