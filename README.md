@@ -90,7 +90,8 @@ You may find detailed instructions about that within our [WIKI](https://github.c
 
 ## Citing UGLab
 
-If you use UGLab in your research and want to cite it, please use this reference:
+If you use UGLab in your research and want to cite it, please use these references:
+>##### Authors:P.Tsagkis, E.Bakogiannis, A.Nikitas - Analysing urban growth using machine learning and open data: An artificial neural network modelled case study of five Greek cities DOI: https://doi.org/10.1016/j.scs.2022.104337
 >##### Authors:P.Tsagkis, E.Bakogiannis UGLab websource: https://github.com/ptsagkis/UGLab/wiki
 
 ## License
